@@ -14,6 +14,10 @@ Content
 
 Install
 ========================
-- git clone project
-- npm install
-- bower install bootstrap-sass -S
+- Install node : https://nodejs.org/en/
+- Install gulp : npm install --global gulp
+- Install bower : npm install -g bower
+- Clone prject : git clone https://github.com/molodoi/theme-arre.git
+- Install packages : npm install
+- Install bootstrap : bower install bootstrap-sass -S
+- Start watch with gulp : gulp watch
