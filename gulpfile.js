@@ -6,20 +6,28 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     gutil = require('gulp-util'),
+    connect = require('gulp-connect-php'),
+    livereload = require('gulp-livereload'),
     size = require('gulp-filesize');
 
 // Paths
 var bower = './app/bower_components';
 
+var livereloadPage = function () {
+    livereload({start: true});
+    livereload.reload();
+  };
+
 // css task
 gulp.task('styles', function () {
-    return gulp.src('scss/*.scss')
+    return gulp.src('./assets/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer('last 2 version'))
     .pipe(rename('app.css'))
     .pipe(minifycss())
     .pipe(gulp.dest('css/'))
     .pipe(size())
+    .pipe(livereload({start: true}))
     .on('end', function(){
         gutil.log(gutil.colors.yellow('♠ La tâche CSS est terminée.'));
     });
@@ -27,26 +35,37 @@ gulp.task('styles', function () {
 
 // javascript task
 gulp.task('scripts', function() {
-    return gulp.src([bower + '/jquery/dist/jquery.js', bower + '/bootstrap-sass/assets/javascripts/bootstrap.js','app/scripts/lib/*.js'])
+    return gulp.src([bower + '/jquery/dist/jquery.js', bower + '/bootstrap-sass/assets/javascripts/bootstrap.js','./assets/js/**/*.js'])
     .pipe(uglify())
     .pipe(concat('app.js'))
     .pipe(gulp.dest('js/'))
     .pipe(size())
+    .pipe(livereload({start: true}))
     .on('end', function(){
         gutil.log(gutil.colors.yellow('♠ La tâche JavaScript est terminée.'));
     });
 });
 
+gulp.task('serve', function() {
+
+  php.server({
+      port: 80,
+      base: './'
+  });
+
+});
+
+
 // default task
 gulp.task('default', function() {
-    gulp.start('styles', 'scripts');
+    gulp.start('serve', 'scripts', 'styles');
 });
 
 gulp.task('watch', function () {
-    livereload.listen(35729);
-    gulp.watch('**/*.php').on('change', function(file) {
+    livereload.listen();
+    gulp.watch('./**/*.php').on('change', function(file) {
           livereload.changed(file.path);
       });
-    gulp.watch('./assets/sass/**/*.scss', ['sass']);
+    gulp.watch('./assets/sass/**/*.scss', ['styles']);
     gulp.watch('./assets/js/**/*.js', ['scripts']);
 });
