@@ -1,11 +1,6 @@
-<?php
-/* tag.php
- * Le modèle d'étiquette est utilisé lorsque les visiteurs demandent des messages par tag.
- */
-?>
 <?php get_header(); ?>
     <main>
-        tag.php
+        archive.php
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
