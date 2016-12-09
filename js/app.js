@@ -1,1 +1,1 @@
-console.log("dfgdfg sdfgf");
+$(function(){new Swiper(".swiper-container",{pagination:".swiper-pagination",paginationClickable:!0,nextButton:".swiper-button-next",prevButton:".swiper-button-prev",parallax:!0,speed:600});$(window).scroll(function(){$(this).scrollTop()>120?$(".scrollup").fadeIn():$(".scrollup").fadeOut()}),$(".scrollup").click(function(){return $("html, body").animate({scrollTop:0},600),!1})});

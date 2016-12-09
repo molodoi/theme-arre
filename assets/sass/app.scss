@@ -2,8 +2,97 @@
 
 @import 'variables';
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
+@import '../../bower_components/swiper/dist/css/swiper.min.css';
+
+$label-color:                 #2d2e2e !default;
 
 
 body{
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.57143;
 	background:#f2f2f2;
 }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Roboto Slab", "Times New Roman", Times, serif;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #2d2e2e;
+}
+
+/* -------------------------------------------------- 
+:: SWIPER - HOME SLIDER
+-----------------------------------------------------*/
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
+	background: #f2f2f2;
+}
+.swiper-slide {
+	font-size: 18px;
+	color:#fff;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 40px 60px;
+}
+.parallax-bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 130%;
+	height: 100%;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center;
+}
+.swiper-slide .title {
+	font-family: 'Roboto slab';
+	font-size: 41px;
+	font-weight: 700;
+}
+.swiper-slide .subtitle {
+	font-size: 21px;
+}
+.swiper-slide .text {
+	font-size: 14px;
+	max-width: 400px;
+	line-height: 1.3;
+}
+
+
+/* -------------------------------------------------- 
+:: SCROLLUP
+-----------------------------------------------------*/
+.scrollup {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    display: inline;
+    line-height:3em;
+	font-size: 12px;
+	font-weight: bold;
+    background-color: #c6c6c6;
+    color:#F2F2F2;
+    text-align:center;
+    z-index: 54;
+	border-radius: 200px 200px 200px 200px;
+	-moz-border-radius: 200px 200px 200px 200px;
+	-webkit-border-radius: 200px 200px 200px 200px;
+	border: 0px solid #000000;
+}
+
+.scrollup:hover, .scrollup:focus, .scrollup:visited {
+    color: #fff;
+  	background: #fec20b;
+}
+
+.scrollup.active {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+
