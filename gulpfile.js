@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     size = require('gulp-filesize');
 
 // Paths
-var bower = './app/bower_components';
+var bower = './bower_components';
 
 var livereloadPage = function () {
     livereload({start: true});
@@ -35,7 +35,12 @@ gulp.task('styles', function () {
 
 // javascript task
 gulp.task('scripts', function() {
-    return gulp.src([bower + '/jquery/dist/jquery.js', bower + '/bootstrap-sass/assets/javascripts/bootstrap.js','./assets/js/**/*.js'])
+    return gulp.src([
+        bower + '/jquery/dist/jquery.min.js', 
+        bower + '/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        bower + '/swiper/dist/js/swiper.min.js', 
+        bower + '/swiper/dist/js/swiper.jquery.min.js', 
+        './assets/js/**/*.js'])
     .pipe(uglify())
     .pipe(concat('app.js'))
     .pipe(gulp.dest('js/'))
@@ -67,5 +72,10 @@ gulp.task('watch', function () {
           livereload.changed(file.path);
       });
     gulp.watch('./assets/sass/**/*.scss', ['styles']);
-    gulp.watch('./assets/js/**/*.js', ['scripts']);
+    gulp.watch([
+        bower + '/jquery/dist/jquery.min.js', 
+        bower + '/bootstrap-sass/assets/javascripts/bootstrap.min.js', 
+        bower + '/swiper/dist/js/swiper.min.js', 
+        bower + '/swiper/dist/js/swiper.jquery.min.js', 
+        './assets/js/**/*.js'], ['scripts']);
 });

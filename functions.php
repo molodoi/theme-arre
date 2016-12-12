@@ -8,14 +8,16 @@
 	define('CSS_DIR', THEME_ROOT . '/css');
 
 
-	define('SWIPER_CSS_DIR', THEME_ROOT . '/bower_components/swiper/dist/css/swiper.min.css');
+	//define('SWIPER_CSS_DIR', THEME_ROOT . '/bower_components/swiper/dist/css/swiper.min.css');
 
 
 	define('JS_DIR', THEME_ROOT . '/js');	
+	/*
 	define('JQUERY_DIR', THEME_ROOT . '/bower_components/jquery/dist/jquery.min.js');
+	define('JQUERY_BOOTSTRAP_DIR', THEME_ROOT . '/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js');
 	define('SWIPER_JQUERY_DIR', THEME_ROOT . '/bower_components/swiper/dist/js/swiper.jquery.min.js');
 	define('SWIPER_JS_DIR', THEME_ROOT . '/bower_components/swiper/dist/js/swiper.min.js');
-
+*/
 	/**
 	* CONFIG THEME
 	*/
@@ -54,9 +56,12 @@
 	require( get_template_directory() . '/includes/clean_up_wp_arre.php' );
 
 	/**
-	* CRÉATION DES SIDEBARS & ZONE DE WIDGETS - barre latérale - homepage - pages - actualités
+	* CRÉATION DES SIDEBARS & ZONE DE WIDGETS
 	*/
 	require( get_template_directory() . '/includes/my_register_sidebars.php' );
+
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 
 	if(!is_admin()):
 		// Register script
@@ -70,12 +75,20 @@
 			$in_footer is a boolean parameter (true/false) that allows you to place your scripts in the footer of your HTML document rather then in the header, so that it does not delay the loading of the DOM tree.
 
 			*/
+			wp_deregister_script( 'jquery' );  			 
+			//wp_enqueue_script('jquery', JQUERY_DIR, null, '3.1.1', true); 
+			//wp_enqueue_script('jquery-boot', JQUERY_BOOTSTRAP_DIR, null, '3.1.1', true); 
 
 
-			wp_deregister_script( 'jquery' );
-			wp_enqueue_script('jquery', JQUERY_DIR, null, '3.1.1', true); 
-			wp_enqueue_script('swiper-jquery-js', SWIPER_JQUERY_DIR, null, '3.1.1', true);
-			wp_enqueue_script('swiper-js', SWIPER_JS_DIR, null, '3.1.1', true);
+			if (is_plugin_active('gmap-embed/srm_gmap_embed.php')) {
+				wp_deregister_script( 'srm_gmap_api' ); 
+				wp_enqueue_script('srm_gmap_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBcVcz5OZ6eNBi5d7CFYHIdtsEI5BQlm68&libraries=places', array(''), '3.1.1', true);
+			}
+
+
+			
+			//wp_enqueue_script('swiper-jquery-js', SWIPER_JQUERY_DIR, null, '3.1.1', true);
+			//wp_enqueue_script('swiper-js', SWIPER_JS_DIR, null, '3.1.1', true);
 			wp_enqueue_script('app-js', JS_DIR.'/app.js', null, '3.1.1', true);
 		}
 
@@ -83,7 +96,7 @@
 		// Register style 
 		function wpt_register_css() {
 			wp_enqueue_style('style', CSS_DIR . '/app.css', null, '3.3.5', 'all');
-			wp_enqueue_style('swiper-css', SWIPER_CSS_DIR, null, '3.3.5', 'all');
+			//wp_enqueue_style('swiper-css', SWIPER_CSS_DIR, null, '3.3.5', 'all');
 		}
 
 		add_action('wp_enqueue_scripts', 'wpt_register_css');

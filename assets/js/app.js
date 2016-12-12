@@ -9,10 +9,22 @@ $(function() {
     });
 
     $(window).scroll(function(){
-        if ($(this).scrollTop() > 120) {
+
+        var scr = $(this).scrollTop();
+        if (scr > 120) {
             $('.scrollup').fadeIn();
         } else {
             $('.scrollup').fadeOut();
+        }
+        if (scr > 50) {
+            $('#brand').fadeIn();
+        } else { 
+            $('#brand').fadeOut();
+        }
+        if (scr > 10) {
+            $('#logo').hide();
+        } else {;
+            $('#logo').show();
         }
     });
 
@@ -22,4 +34,13 @@ $(function() {
         }, 600);
         return false;
     });
+
+    /* affix the navbar after scroll below header */
+    $('#nav').affix({
+        offset: {
+            //top: $('header').height()-$('#nav').height()
+            top: 60
+        }            
+    }); 
+    
 });

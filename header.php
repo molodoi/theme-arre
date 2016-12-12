@@ -39,40 +39,39 @@
 </head>
 <body <?php body_class(); ?> >
     <header>
-        <?php if( is_user_logged_in() ): ?>
-            <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="container"> 
-                    <?php
+
+
+        <!-- Fly-in navbar -->
+        <div class="navbar navbar-inverse navbar-static-top" id="nav">
+            <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" id="brand"><?php bloginfo('title'); ?><span ><?php bloginfo('description'); ?></span></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <div class="navbar-brand">
+                    <img src="<?php print IMG_DIR; ?>/logo-arre-nav.png" alt="logo ARRE" id="logo"/>
+
+                </div>
+                <?php
                         wp_nav_menu(array(
-                            'menu' => 'menu-membres', // identifiant du menu, défini dans functions.php
+                            'menu' => 'menu-principal', // identifiant du menu, défini dans functions.php
                             'depth' => 3, // profondeur de menu admise (0 pour no-limit)
                             'container' => false, // élément conteneur
-                            'fallback_cb' => false, //fonction de substitution à utiliser si le menu n'existe pas
-                            'menu_class' => 'nav navbar-nav', // class du menu
+                            'menu_class' => 'nav navbar-nav navbar-right', // class du menu
+                            'fallback_cb' => 'wp_page_menu', //fonction de substitution à utiliser si le menu n'existe pas
                             'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>', //défini la forme du menu (ul, ol, rien...)
                             'walker' => new wp_bootstrap_menunav_walker()) //le rôle du Walker est de redéfinir leur comportement, la façon dont elles vont créer ces listes.
                         );
-                    ?> 
-                </div>
-            </nav>
-            <div class="clearfix"></div>
-            <br />
-        <?php endif; ?>
-
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">       
-                <div class="navbar-header"> <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a href="#" class="navbar-brand">ARRE</a> </div>
-                <?php
-                wp_nav_menu(array(
-                    'menu' => 'menu-principal', // identifiant du menu, défini dans functions.php
-                    'depth' => 3, // profondeur de menu admise (0 pour no-limit)
-                    'container' => false, // élément conteneur
-                    'menu_class' => 'nav navbar-nav', // class du menu
-                    'fallback_cb' => 'wp_page_menu', //fonction de substitution à utiliser si le menu n'existe pas
-                    'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>', //défini la forme du menu (ul, ol, rien...)
-                    'walker' => new wp_bootstrap_menunav_walker()) //le rôle du Walker est de redéfinir leur comportement, la façon dont elles vont créer ces listes.
-                );
-                ?>
+                        ?>
+            </div><!--/.nav-collapse -->
+            </div><!--/.container -->
+        </nav><!--/.navbar -->
+        
 
                 <?php
                     /*
@@ -97,7 +96,5 @@
                         )
                     );
                     */
-                ?> 
-            </div>
-        </nav>
+                ?>
     </header>

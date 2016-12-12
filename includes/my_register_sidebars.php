@@ -7,10 +7,22 @@ if (function_exists('register_sidebar')) {
 
     register_sidebar(
             array(
-                'name' => 'Accueil Zone 1 - Focus',
-                'id' => 'homezone1-sidebar',
-                'description' => 'Cette Zone se situe uniquement sur la page d\'accueil, en dessous de la zone "Notre sélection du traiteur" et peut accueillir jusque 2 Widgets maximum de dimension L:1200px H:560px. Respecter le nombre de 2 widgets pour ne pas destructurer le site.',
-                'before_widget' => '<div class="col-lg-6"><div id="%1$s" class="widget %2$s"><br />',
+                'name' => 'Google map section',
+                'id' => 'googlemap-sidebar',
+                'description' => 'Cette Zone se situe uniquement sur la page d\'accueil, en dessous de la zone "Notre sélection du traiteur" et peut accueillir 1 Widget maximum de dimension L:1200px H:450px. Respecter le nombre de widgets pour ne pas destructurer le site.',
+                'before_widget' => '<div class="col-lg-12"><div id="%1$s" class="widget %2$s"><br />',
+                'after_widget' => '</div></div>',
+                'before_title' => '',
+                'after_title' => ''
+            )
+    );
+
+    register_sidebar(
+            array(
+                'name' => 'Pied de Page',
+                'id' => 'footer-sidebar',
+                'description' => 'Cette Zone se situe uniquement sur la page d\'accueil, en dessous de la zone "Notre sélection du traiteur" et peut accueillir 1 Widget maximum de dimension L:1200px H:450px. Respecter le nombre de widgets pour ne pas destructurer le site.',
+                'before_widget' => '<div class="col-lg-4"><div id="%1$s" class="widget %2$s"><br />',
                 'after_widget' => '</div></div>',
                 'before_title' => '',
                 'after_title' => ''
