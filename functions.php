@@ -63,6 +63,12 @@
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 
+	$args = array(
+		'default-color' => '000000',
+		'default-image' => IMG_DIR.'/bg-body.jpg',
+	);
+	add_theme_support( 'custom-background', $args );
+
 	if(!is_admin()):
 		// Register script
 		function wpt_register_js() {
@@ -78,18 +84,58 @@
 			wp_deregister_script( 'jquery' );  			 
 			//wp_enqueue_script('jquery', JQUERY_DIR, null, '3.1.1', true); 
 			//wp_enqueue_script('jquery-boot', JQUERY_BOOTSTRAP_DIR, null, '3.1.1', true); 
+			
 
-
+			/*
 			if (is_plugin_active('gmap-embed/srm_gmap_embed.php')) {
 				wp_deregister_script( 'srm_gmap_api' ); 
 				wp_enqueue_script('srm_gmap_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBcVcz5OZ6eNBi5d7CFYHIdtsEI5BQlm68&libraries=places', array(''), '3.1.1', true);
 			}
-
+			*/
 
 			
 			//wp_enqueue_script('swiper-jquery-js', SWIPER_JQUERY_DIR, null, '3.1.1', true);
 			//wp_enqueue_script('swiper-js', SWIPER_JS_DIR, null, '3.1.1', true);
 			wp_enqueue_script('app-js', JS_DIR.'/app.js', null, '3.1.1', true);
+			wp_enqueue_script('gmaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBcVcz5OZ6eNBi5d7CFYHIdtsEI5BQlm68&libraries=places', null, '3.1.1', true);
+			wp_enqueue_script('jquery-gmaps', JS_DIR.'/gmap3.min.js', null, '3.1.1', true);
+
+
+			function mycustom_script() {
+				?>
+				<script type='text/javascript'>
+					$(document).ready(function(){
+						$('.map')
+						.gmap3({
+							center:[50.696437,3.1741172],
+							address:"14 rue Saint Antoine 59100 Roubaix, France",
+							zoom: 18,
+							mapTypeId : google.maps.MapTypeId.ROADMAP,
+							mapTypeControl: false,
+							mapTypeControlOptions: {
+								style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+							},
+							navigationControl: false,
+							scrollwheel: false,
+							streetViewControl: false
+						})
+						.marker([
+							{address:"14 rue Saint Antoine 59100 Roubaix, France"}
+						])
+						.on('click', function (marker) {
+							marker.setIcon('http://maps.google.com/mapfiles/marker_green.png');
+						});
+
+						$('a.social_link ,a[href$=".pdf"], a[href$=".doc"], a[href$=".docx"], a[href$=".zip"], a[href$=".txt"], a[href$=".doc"], a[href$=".xls"], a[href$=".xlt"], a[href$=".xlsx"], a[href$=".xlsm"], a[href$=".xltx"], a[href$=".docx"], a[href$=".ppt"], a[href$=".ots"], a[href$=".odc"], a[href$=".odt"]').each(function(){
+							$(this).attr('target', '_blank');
+						});
+					});
+				</script>
+				<?php
+				
+			}
+
+			add_action('wp_footer', 'mycustom_script', 29);
 		}
 
 		add_action('wp_enqueue_scripts', 'wpt_register_js');

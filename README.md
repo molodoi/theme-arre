@@ -28,7 +28,9 @@ Install
 - Install gulp : npm install --global gulp
 - Install bower : npm install -g bower
 - Clone the project : git clone https://github.com/molodoi/theme-arre.git
+- Move to theme directory : cd theme-arre
 - Install packages : npm install
 - Install bootstrap : bower install bootstrap-sass -S
-- Add Livereload chrome extension and activated it : https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
+- Install bootstrap : bower install swiper
+- Download Livereload extension/Add it to your Chrome Extensions and activated it : https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
 - Start watch with gulp : gulp watch

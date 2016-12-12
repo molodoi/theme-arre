@@ -31,16 +31,12 @@
     <meta name="msapplication-square150x150logo" content="<?php print IMG_DIR; ?>/mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="<?php print IMG_DIR; ?>/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="<?php print IMG_DIR; ?>/mstile-310x310.png" />
-
-
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,700%7CRoboto+Slab:400,300,700">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >
     <header>
-
-
         <!-- Fly-in navbar -->
         <div class="navbar navbar-inverse navbar-static-top" id="nav">
             <div class="container">
@@ -50,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#" id="brand"><?php bloginfo('title'); ?><span ><?php bloginfo('description'); ?></span></a>
+                <h1><a class="navbar-brand" href="#" id="brand"><?php bloginfo('title'); ?><span ><?php bloginfo('description'); ?></span></a></h1>
             </div>
             <div class="collapse navbar-collapse">
                 <div class="navbar-brand">

@@ -45,12 +45,10 @@
                             <article id="post-<?php the_ID(); ?>" <?php post_class(''); ?> >
                                 <header>
                                     <h2>
-                                        <a href="<?php the_permalink(); ?>">
                                             <?php the_title(); ?>
-                                        </a>
                                     </h2>
                                 </header>
-                                <span class="secondary label date"><?php the_time(get_option('date_format')); ?></span>&nbsp;
+                                <span class="secondary label date"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <?php the_time(get_option('date_format')); ?></span>&nbsp;
                                 <?php if(has_category( '', $post->ID )): ?>
                                     <span class="categories">                         
                                         <?php the_category(' '); ?>                  
@@ -131,7 +129,7 @@ Ex turba vero imae sortis et paupertinae in tabernis aliqui pernoctant vinariis,
         </div>
 
         <section class="google-map">
-            <?php get_sidebar('googlemap-sidebar'); ?>
+            <div class="map"></div>
         </section>
         
     </main>
