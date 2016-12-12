@@ -105,6 +105,7 @@
 				?>
 				<script type='text/javascript'>
 					$(document).ready(function(){
+						//http://gmap3.net/
 						$('.map')
 						.gmap3({
 							center:[50.696437,3.1741172],
@@ -119,11 +120,11 @@
 							scrollwheel: false,
 							streetViewControl: false
 						})
-						.marker([
-							{address:"14 rue Saint Antoine 59100 Roubaix, France"}
-						])
-						.on('click', function (marker) {
-							marker.setIcon('http://maps.google.com/mapfiles/marker_green.png');
+						.marker(function (map) {
+							return {
+							position: map.getCenter(),
+							icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+							};
 						});
 
 						$('a.social_link ,a[href$=".pdf"], a[href$=".doc"], a[href$=".docx"], a[href$=".zip"], a[href$=".txt"], a[href$=".doc"], a[href$=".xls"], a[href$=".xlt"], a[href$=".xlsx"], a[href$=".xlsm"], a[href$=".xltx"], a[href$=".docx"], a[href$=".ppt"], a[href$=".ots"], a[href$=".odc"], a[href$=".odt"]').each(function(){

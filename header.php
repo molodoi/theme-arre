@@ -37,6 +37,7 @@
 </head>
 <body <?php body_class(); ?> >
     <header>
+        
         <!-- Fly-in navbar -->
         <div class="navbar navbar-inverse navbar-static-top" id="nav">
             <div class="container">
@@ -46,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1><a class="navbar-brand" href="#" id="brand"><?php bloginfo('title'); ?><span ><?php bloginfo('description'); ?></span></a></h1>
+                <a class="navbar-brand" href="#" id="brand"><?php bloginfo('title'); ?><span ><?php bloginfo('description'); ?></span></a>
             </div>
             <div class="collapse navbar-collapse">
                 <div class="navbar-brand">
@@ -67,8 +68,6 @@
             </div><!--/.nav-collapse -->
             </div><!--/.container -->
         </nav><!--/.navbar -->
-        
-
                 <?php
                     /*
                     //EXEMPLE :
