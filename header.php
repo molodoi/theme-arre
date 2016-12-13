@@ -36,60 +36,77 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >
-    <header>
-        
-        <!-- Fly-in navbar -->
-        <div class="navbar navbar-inverse navbar-static-top" id="nav">
-            <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#" id="brand"><?php bloginfo('title'); ?><span ><?php bloginfo('description'); ?></span></a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <div class="navbar-brand">
-                    <img src="<?php print IMG_DIR; ?>/logo-arre-nav.png" alt="logo ARRE" id="logo"/>
-
+    <?php //https://startbootstrap.com/template-overviews/simple-sidebar/ ?>
+    <header class="header-top visible-md-block visible-lg-block">        
+        <nav class="navbar navbar-default my-navbar navbar-fixed-top " role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h1 class="site-title">
+                        <?php echo bloginfo('name'); ?>
+                    </h1>
                 </div>
-                <?php
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <?php
                         wp_nav_menu(array(
                             'menu' => 'menu-principal', // identifiant du menu, défini dans functions.php
                             'depth' => 3, // profondeur de menu admise (0 pour no-limit)
                             'container' => false, // élément conteneur
-                            'menu_class' => 'nav navbar-nav navbar-right', // class du menu
+                            'menu_class' => 'nav navbar-nav', // class du menu
                             'fallback_cb' => 'wp_page_menu', //fonction de substitution à utiliser si le menu n'existe pas
                             'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>', //défini la forme du menu (ul, ol, rien...)
                             'walker' => new wp_bootstrap_menunav_walker()) //le rôle du Walker est de redéfinir leur comportement, la façon dont elles vont créer ces listes.
                         );
-                        ?>
-            </div><!--/.nav-collapse -->
-            </div><!--/.container -->
-        </nav><!--/.navbar -->
-                <?php
-                    /*
-                    //EXEMPLE :
-                    wp_nav_menu(
-                        array(
-                            'theme_location'  => 'menu_primaire', // identifiant du menu, défini dans functions.php
-                            'container'       => 'nav', // élément conteneur
-                            'container_class' => 'class_menu_primaire', // classe de cet élément
-                            'container_id'    => 'ID_menu_primaire', // ID de cet élément
-                            'menu_class'      => 'class_du_menu', // class du menu
-                            'menu_id'         => 'ID_du_menu', // ID du menu
-                            'echo'            => true, //true si on veut écrire le menu, false pour un simple return
-                            'fallback_cb'     => 'wp_page_menu', //fonction de substitution à utiliser si le menu n'existe pas
-                            'before'          => '', // texte à mettre devant le lien
-                            'after'           => '', // texte à mettre après le lien
-                            'link_before'     => '', // texte par lequel commence le lien
-                            'link_after'      => '', // texte par lequel termine le lien
-                            'items_wrap'      => '<ul id="\"%1$s\"" class="\"%2$s\"">%3$s</ul>', //défini la forme du menu (ul, ol, rien...)
-                            'depth'           => 0, // profondeur de menu admise (0 pour no-limit)
-                            'walker'          => new My_Walker() // C'EST CET ELEMENT QUI NOUS INTÉRESSE !!
-                        )
-                    );
-                    */
-                ?>
+                    ?>
+                    <?php
+                        if( is_user_logged_in() ):
+                            wp_nav_menu(array(
+                                'menu' => 'menu-membres', // identifiant du menu, défini dans functions.php
+                                'depth' => 3, // profondeur de menu admise (0 pour no-limit)
+                                'container' => false, // élément conteneur
+                                'menu_class' => 'nav navbar-nav navbar-right', // class du menu
+                                'fallback_cb' => 'wp_page_menu', //fonction de substitution à utiliser si le menu n'existe pas
+                                'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>', //défini la forme du menu (ul, ol, rien...)
+                                'walker' => new wp_bootstrap_menunav_walker()) //le rôle du Walker est de redéfinir leur comportement, la façon dont elles vont créer ces listes.
+                            );
+                        endif;
+                    ?>
+                    
+                    <?php get_search_form(); ?>
+                    
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <?php
+            /*
+            //EXEMPLE :
+            wp_nav_menu(
+                array(
+                    'theme_location'  => 'menu_primaire', // identifiant du menu, défini dans functions.php
+                    'container'       => 'nav', // élément conteneur
+                    'container_class' => 'class_menu_primaire', // classe de cet élément
+                    'container_id'    => 'ID_menu_primaire', // ID de cet élément
+                    'menu_class'      => 'class_du_menu', // class du menu
+                    'menu_id'         => 'ID_du_menu', // ID du menu
+                    'echo'            => true, //true si on veut écrire le menu, false pour un simple return
+                    'fallback_cb'     => 'wp_page_menu', //fonction de substitution à utiliser si le menu n'existe pas
+                    'before'          => '', // texte à mettre devant le lien
+                    'after'           => '', // texte à mettre après le lien
+                    'link_before'     => '', // texte par lequel commence le lien
+                    'link_after'      => '', // texte par lequel termine le lien
+                    'items_wrap'      => '<ul id="\"%1$s\"" class="\"%2$s\"">%3$s</ul>', //défini la forme du menu (ul, ol, rien...)
+                    'depth'           => 0, // profondeur de menu admise (0 pour no-limit)
+                    'walker'          => new My_Walker() // C'EST CET ELEMENT QUI NOUS INTÉRESSE !!
+                )
+            );
+            */
+        ?>
     </header>

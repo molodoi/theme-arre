@@ -3,32 +3,34 @@
     index.php
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <?php if(have_posts()): ?>
+                <?php if(have_posts()): ?>
                         <?php while(have_posts()): the_post(); ?>
-                            <article id="post-<?php the_ID(); ?>" <?php post_class(' panel'); ?> >
+                            <div class="col-lg-4">                    
+                            <article id="post-<?php the_ID(); ?>" <?php post_class(' '); ?> >
                                 <header>
                                     <h2>
                                         <a href="<?php the_permalink(); ?>">
                                             <?php the_title(); ?>
                                         </a>
                                     </h2>
+                                    <div class="secondary label date">
+                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
+                                        <?php the_time(get_option('date_format')); ?>
+                                    </div>&nbsp;
+                                    <?php if(has_category( '', $post->ID )): ?>
+                                        <div class="categories"> 
+                                            <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
+                                            <?php the_category(' '); ?>                  
+                                        </div>&nbsp;
+                                    <?php endif; ?>
                                 </header>
-                                <span class="secondary label date"><?php the_time(get_option('date_format')); ?></span>&nbsp;
-                                <?php if(has_category( '', $post->ID )): ?>
-                                    <span class="categories">                         
-                                        <?php the_category(' '); ?>                  
-                                    </span>&nbsp;
-                                <?php endif; ?>
+                                
                                 
                                 <?php if(has_post_thumbnail()): ?> 
                                     <figure>
-                                            <a href="<?php the_permalink(); ?>" class="th">
-                                                <?php the_post_thumbnail(array(600,250)); ?>
-                                            </a>
-                                        </figure>
-                                        <br />
-                                    <?php endif; ?>
+                                        <?php the_post_thumbnail('thumbnail', array( 'class' => 'img-rounded img-responsive' )); ?>
+                                    </figure>
+                                <?php endif; ?>
                                     
                                     
                                     <?php 
@@ -42,9 +44,8 @@
                                         the_content('Lire la suite');
                                     endif; 
                                     ?>
-                            </article>
-                            <div class="post-divider"></div>            
-                            
+                            </article>           
+                            </div>
                         <?php endwhile; ?>
                     <?php else: ?>
                             <article class="panel">
@@ -58,7 +59,6 @@
                                 <br />
                             </article>
                     <?php endif; ?>
-                </div> 
             </div>
         </div>
     </main>

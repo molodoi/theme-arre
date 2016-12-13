@@ -23,7 +23,19 @@
 	*/
 	add_theme_support('menus');
 	add_theme_support('post-thumbnails', array('menus', 'post', 'page'));
-	add_theme_support('post-formats');
+	add_theme_support(
+	'post-formats', array(
+			//'aside',
+			//'chat',
+			//'gallery',
+			'image',
+			'link',
+			'quote',
+			//'status',
+			'video',
+			'audio'
+		)
+	);
 
 	/**
 	* REGISTER MENU
@@ -46,8 +58,8 @@
 	/**
 	* INCLURE LES CUSTOM POST TYPE
 	*/
-	//require_once( get_template_directory() . '/includes/formations_custom_post_type.php' );
-	//require_once( get_template_directory() . '/includes/services_custom_post_type.php' );
+	require_once( get_template_directory() . '/includes/custom_post_type/formations_custom_post_type.php' );
+	require_once( get_template_directory() . '/includes/custom_post_type/services_custom_post_type.php' );
 
 
 	/**
@@ -62,12 +74,16 @@
 
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
+	/**
+	* BOOTSTRAP LINKS PAGES
+	*/
+	require( get_template_directory() . '/includes/bootstrap_link_pages.php' );
 
-	$args = array(
-		'default-color' => '000000',
-		'default-image' => IMG_DIR.'/bg-body.jpg',
-	);
-	add_theme_support( 'custom-background', $args );
+	/**
+	* CUSTOMIZE WORPDRESS
+	*/
+	require_once( get_template_directory() . '/includes/theme_customize.php' );
+	
 
 	if(!is_admin()):
 		// Register script
@@ -102,14 +118,18 @@
 
 
 			function mycustom_script() {
+				$options = get_option('arre_custom_settings');
 				?>
 				<script type='text/javascript'>
 					$(document).ready(function(){
+						var geoloc = "<?php echo (trim($options['arre_geoloc_arre_coordonates']) != '')? $options['arre_geoloc_arre_coordonates']: '50.696437,3.1741172'; ?>";
+						var addrr = "<?php echo (trim($options['arre_address_arre_coordonates']) != '')? $options['arre_address_arre_coordonates']: '14 rue Saint Antoine 59100 Roubaix, France'; ?>";
 						//http://gmap3.net/
+						console.log(geoloc+addrr);
 						$('.map')
 						.gmap3({
-							center:[50.696437,3.1741172],
-							address:"14 rue Saint Antoine 59100 Roubaix, France",
+							center: [geoloc],
+							address: addrr,
 							zoom: 18,
 							mapTypeId : google.maps.MapTypeId.ROADMAP,
 							mapTypeControl: false,
@@ -142,6 +162,7 @@
 		add_action('wp_enqueue_scripts', 'wpt_register_js');
 		// Register style 
 		function wpt_register_css() {
+			wp_enqueue_style('font--awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', null, '4.2.0', 'all');
 			wp_enqueue_style('style', CSS_DIR . '/app.css', null, '3.3.5', 'all');
 			//wp_enqueue_style('swiper-css', SWIPER_CSS_DIR, null, '3.3.5', 'all');
 		}

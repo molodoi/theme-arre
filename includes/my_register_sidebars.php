@@ -31,13 +31,13 @@ if (function_exists('register_sidebar')) {
 
     register_sidebar(
             array(
-                'name' => 'Pied de Page',
+                'name' => 'Pied de Page Accueil',
                 'id' => 'footer-sidebar',
-                'description' => 'Cette Zone se situe uniquement sur la page d\'accueil, en dessous de la zone "Notre sélection du traiteur" et peut accueillir 1 Widget maximum de dimension L:1200px H:450px. Respecter le nombre de widgets pour ne pas destructurer le site.',
+                'description' => 'Cette Zone se situe uniquement sur la page d\'accueil, en dessous de la zone "Notre sélection du traiteur" et peut accueillir 2 Widgets maximum de dimension L:1200px H:450px. Respecter le nombre de widgets pour ne pas destructurer le site.',
                 'before_widget' => '<div class="col-lg-4"><div id="%1$s" class="widget %2$s"><br />',
                 'after_widget' => '</div></div>',
-                'before_title' => '',
-                'after_title' => ''
+                'before_title' => '<h3>',
+                'after_title' => '</h3>'
             )
     );
 

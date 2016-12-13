@@ -9,22 +9,11 @@ $(function() {
     });
 
     $(window).scroll(function(){
-
         var scr = $(this).scrollTop();
         if (scr > 120) {
             $('.scrollup').fadeIn();
         } else {
             $('.scrollup').fadeOut();
-        }
-        if (scr > 50) {
-            $('#brand').fadeIn();
-        } else { 
-            $('#brand').fadeOut();
-        }
-        if (scr > 10) {
-            $('#logo').hide();
-        } else {;
-            $('#logo').show();
         }
     });
 
@@ -35,13 +24,29 @@ $(function() {
         return false;
     });
 
-    /* affix the navbar after scroll below header */
-    $('#nav').affix({
-        offset: {
-            //top: $('header').height()-$('#nav').height()
-            top: 60
-        }            
-    }); 
+    function closeSearch() {
+        var $form = $('.navbar-collapse form[role="search"].active')
+        $form.find('input').val('');
+        $form.removeClass('active');
+    }
+
+    // Show Search if form is not active // event.preventDefault() is important, this prevents the form from submitting
+    $(document).on('click', '.navbar-collapse form[role="search"]:not(.active) button[type="submit"]', function(event) {
+        event.preventDefault();
+        var $form = $(this).closest('form'),
+            $input = $form.find('input');
+        $form.addClass('active');
+        $input.focus();
+    });
+    // ONLY FOR DEMO // Please use $('form').submit(function(event)) to track from submission
+    // if your form is ajax remember to call `closeSearch()` to close the search container
+    $(document).on('click', '.navbar-collapse form[role="search"].active button[type="submit"]', function(event) {
+        event.preventDefault();
+        var $form = $(this).closest('form'),
+            $input = $form.find('input');
+        $('#showSearchTerm').text($input.val());
+        closeSearch()
+    });
     
     
 });

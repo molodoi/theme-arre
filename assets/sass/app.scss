@@ -2,6 +2,7 @@
 @import 'variables';
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables';
+@import '../../bower_components/font-awesome-sass/assets/stylesheets/_font-awesome';
 @import '../../bower_components/swiper/dist/css/swiper.min.css';
 
 $label-color: #2d2e2e !default;
@@ -40,26 +41,11 @@ a:hover {
     text-decoration: none;
 }
 
-#brand{
-	display: none;
-	text-transform: uppercase;
-	line-height: 1;
-	margin: -5px 0;
-}
-
-#brand > span{
-	display: block;
-	clear: both;
-	text-transform: lowercase;
-	font-family: "Open Sans", "Times New Roman", Times, serif;
-	font-size: 10px;
-	line-height: 1;
-}
-
 .map{
 	height: 450px;
 	width:auto;
 }
+
 
 /* -------------------------------------------------- 
 :: SWIPER - HOME SLIDER
@@ -101,8 +87,6 @@ a:hover {
 	max-width: 450px;
 	line-height: 1.6em;
 }
-
-
 /* -------------------------------------------------- 
 :: SCROLLUP
 -----------------------------------------------------*/
@@ -140,39 +124,88 @@ a:hover {
 /* -------------------------------------------------- 
 :: NAVBAR
 -----------------------------------------------------*/
-.navbar {
-    position: relative;
-    min-height: 50px;
+.navbar-collapse {
+	position: relative;
+	padding-top: 30px !important;
+	max-height: 270px;
+}
+.navbar-collapse form[role="search"] {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	z-index: 0;
+}
+.navbar-collapse form[role="search"] button,
+.navbar-collapse form[role="search"] input {
+	padding: 8px 12px;
+	border-radius: 0px;
+	border-width: 0px;
+	color: rgb(119, 119, 119);
+	background-color: rgb(248, 248, 248);
+	border-color: rgb(231, 231, 231);
+	box-shadow: none;
+	outline: none;
+}
+.navbar-collapse form[role="search"] input {
+	padding: 16px 12px;
+	font-size: 14pt;
+	font-style: italic;
+	color: rgb(160, 160, 160);
+	box-shadow: none;
+}
+
+@media (min-width: 768px) {
+	.navbar-collapse {
+		padding-top: 0px !important;
+		padding-right: 38px !important;
+	}
+	.navbar-collapse form[role="search"] {
+		width: 38px;
+	}
+	.navbar-collapse form[role="search"] button,
+	.navbar-collapse form[role="search"] input {
+		padding: 15px 12px;
+	}
+	.navbar-collapse form[role="search"] input {
+		padding: 25px 12px;
+		font-size: 18pt;
+		opacity: 0;
+		display: none;
+	}
+	.navbar-collapse form[role="search"].active {
+		width: 100%;
+	}
+	.navbar-collapse form[role="search"].active button,
+	.navbar-collapse form[role="search"].active input {
+		display: table-cell;
+		opacity: 1;
+	}
+	.navbar-collapse form[role="search"].active input {
+		width: 100%;
+		text-align: right;
+	}
+	.navbar-collapse form[role="search"].active button[type="submit"] {
+		background-color: rgb(231, 231, 231);
+	}
+}
+.header-top{
+	display: block;
+	height:50px;
+}
+
+.site-title{
+	font-size:28px;
+	line-height: 1.7em;
+	margin-top: 0px;
     margin-bottom: 0px;
-    border: 1px solid transparent;
+	text-transform: uppercase;
 }
+.my-navbar {
 
-#topNav {
-	z-index:-1;
-}
-
-#nav {
-  width: 100%;
-}
-
-#nav.affix-top {
-   position: absolute;
-   top:0;
-   left:0;
-   z-index:10;
-   background-color:transparent;
-   border:0;
-}
-
-#nav.affix {
-   position: fixed;
-   border: 1px solid transparent;
-   top: 0;
-   z-index:10;
-   -webkit-transition: background-color .6s ease-in-out;
-}
-
-.navbar-inverse {
+	
 	font-family: 'Roboto Slab';
 	font-size: 16px;
 	font-weight: bold;
@@ -180,12 +213,305 @@ a:hover {
     border-color: transparent;
 }
 
-.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-nav>li>a:hover,.navbar-inverse .navbar-text {
+.my-navbar .navbar-nav>li>a, .my-navbar .navbar-nav>li>a:hover,.my-navbar .navbar-text {
     color: #2d2e2e;
 }
 
-.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+.my-navbar .navbar-nav>.active>a, .my-navbar .navbar-nav>.active>a:focus, .my-navbar .navbar-nav>.active>a:hover {
     color: #d15a94;
     background-color: transparent;
+}
+/* -------------------------------------------------- 
+:: PAGE DEFAULT WP TEMPLATE
+-----------------------------------------------------*/
+header.header-page{
+	background: #4ab8b5;
+	text-align: center;
+	color:#fff;
+	margin-bottom: 10px;
+	
+}
+
+header.header-page h2{
+	font-size: 36px;
+    color: #fff;
+    padding: 45px 5px;
+	width: 60%;
+    margin: 0 auto;
+}
+
+header.header-page ul.breadcrumb{
+	background: #4ab8b5;
+	color:#fff;		
+}
+
+header.header-page ul.breadcrumb li a{
+	color:#fff;		
+}
+
+header.header-page ul.breadcrumb li a:hover{
+	text-decoration: underline;		
+}
+
+/* -------------------------------------------------- 
+:: COORDONATES SECTION
+-----------------------------------------------------*/
+section.coordonates{
+	background: #fff;
+	padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+section.coordonates a{
+	color:inherit;
+}
+
+section.coordonates a:hover {
+    color: #42a7a4;
+}
+
+section.coordonates div.col-lg-4{
+	padding: 60px 0px;
+}
+section.coordonates div.col-lg-4:first-child{
+	border-right: 1px solid #eee;
+}
+
+section.coordonates div.col-lg-4:last-child{
+	border-left: 1px solid #eee;	
+}
+
+section.coordonates p.text-center{
+	text-align: center;
+}
+section.coordonates .glyphicon{
+	font-size: 36px;
+    line-height: 36px;
+	color: #42a7a4;
+	clear:both;
+}
+section.coordonates .glyphicon.glyphicon-earphone {
+    
+	
+}
+section.coordonates .glyphicon.glyphicon-map-marker {
+    
+
+}
+section.coordonates .glyphicon.glyphicon-envelope {
+    
+
+}
+
+/* -------------------------------------------------- 
+:: FOOTER
+-----------------------------------------------------*/
+
+section.home-footer{
+	background: #fafafa;
+}
+
+section.home-footer div.col-lg-4:first-child{
+	padding: 60px 0px;	
+}
+
+.footer-menu-breadcrumb{
+	background: transparent!important;
+	padding: 0 15px;
+}
+
+/* -------------------------------------------------- 
+:: FOOTER - ICONS SOCIAL
+-----------------------------------------------------*/
+/* footer social icons */
+section.home-footer ul.social-network {
+	list-style: none;
+	display: inline;
+	margin-left:0 !important;
+	padding: 0;
+}
+section.home-footer ul.social-network li {
+	display: inline;
+	margin: 0 5px;
+}
+
+section.home-footer .asso-subtitle{
+	font-size: 22px;
+}
+
+/* footer social icons */
+section.home-footer .social-network a.icoRss:hover {
+	background-color: #F56505;
+}
+section.home-footer .social-network a.icoFacebook:hover {
+	background-color:#3B5998;
+}
+section.home-footer .social-network a.icoTwitter:hover {
+	background-color:#33ccff;
+}
+section.home-footer .social-network a.icoGoogle:hover {
+	background-color:#BD3518;
+}
+section.home-footer .social-network a.icoViadeo:hover {
+	background-color:#ffa500;
+}
+section.home-footer .social-network a.icoLinkedin:hover {
+	background-color:#0077b5;
+}
+section.home-footer .social-network a.icoYoutube:hover {
+	background-color:#BD3518;
+}
+section.home-footer .social-network a.icoPinterest:hover {
+	background-color:#BD081c;
+}
+section.home-footer .social-network a.icoInstagram:hover {
+	background-color:#16a085;
+}
+.social-network a.icoInstagram:hover i, .social-network a.icoPinterest:hover i, .social-network a.icoViadeo:hover i, .social-network a.icoLinkedin:hover i, .social-network a.icoYoutube:hover i, .social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+.social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+	color:#fff;
+}
+
+section.home-footer a.socialIcon:hover, .socialHoverClass {
+	color:#44BCDD;
+}
+
+section.home-footer .social-circle li a {
+	display:inline-block;
+	position:relative;
+	margin:0 auto 0 auto;
+	-moz-border-radius:50%;
+	-webkit-border-radius:50%;
+	border-radius:50%;
+	text-align:center;
+	width: 50px;
+	height: 50px;
+	font-size:20px;
+}
+.social-circle li i {
+	margin:0;
+	line-height:50px;
+	text-align: center;
+}
+
+.social-circle li a:hover i, .triggeredHover {
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	transition: all 0.2s;
+}
+.social-circle i {
+	-webkit-transition: all 0.8s;
+	-moz-transition: all 0.8s;
+	-o-transition: all 0.8s;
+	-ms-transition: all 0.8s;
+	transition: all 0.8s;
+}
+
+footer{
+	background: #fafafa;
+}
+
+
+/* -------------------------------------------------- 
+:: WIDGET
+-----------------------------------------------------*/
+.widget{
+
+}
+
+/* -------------------------------------------------- 
+:: FORM CONECT
+-----------------------------------------------------*/
+ input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+ }
+
+ input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, textarea:focus{
+	     border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+ }
+#wp-members input[type="submit"] {
+	color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+	display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid #adadad;
+    white-space: nowrap;
+    padding: 10px 12px!important;
+    font-size: 16px;
+    line-height: 1.42857;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	text-transform: capitalize;
+	width: 100%;
+    margin: 12px 4px 0 0!important;
+}
+
+#wp-members input[type="submit"]:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+ 
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	body {
+		font-size: 2em;
+		line-height: 2em;
+	}
+	header.header-page h2{
+		font-size: 0.8em;
+	}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+		
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+	
 }
 
