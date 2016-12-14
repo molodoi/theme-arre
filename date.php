@@ -4,53 +4,67 @@
  */
 ?>
 <?php get_header(); ?>
-    <main>
-    date.php
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <?php if(have_posts()): ?>
-                        <?php while(have_posts()): the_post(); ?>
-                            <article id="post-<?php the_ID(); ?>" <?php post_class(' panel'); ?> >
+<header class="header-page">
+    <h2>
+        <?php echo get_the_date('F Y'); ?>
+    </h2>
+
+        <p><?php echo category_description(); ?></p>
+
+    <?php if (function_exists('yoast_breadcrumb')): ?>
+            <?php yoast_breadcrumb('<ul class="breadcrumb"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <li>', '</li></ul>'); ?>
+    <?php endif; ?>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <main>                
+                <?php if(have_posts()): ?>
+                    <div class="row">
+                    <?php while(have_posts()): the_post(); ?>
+                        <div class="col-lg-6">                    
+                            <article id="post-<?php the_ID(); ?>" <?php post_class('article-index'); ?> >                            
+                                <?php if(has_post_thumbnail()): ?> 
+                                    <figure>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php the_post_thumbnail('thumbnail', array( 'class' => 'img-full-width img-responsive' )); ?>
+                                        </a>
+                                    </figure>
+                                <?php endif; ?>
                                 <header>
                                     <h2>
                                         <a href="<?php the_permalink(); ?>">
                                             <?php the_title(); ?>
                                         </a>
-                                    </h2>
+                                    </h2>                                    
                                 </header>
-                                <span class="secondary label date"><?php the_time(get_option('date_format')); ?></span>&nbsp;
+
+                                <div class="secondary label date">
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
+                                    <?php the_time(get_option('date_format')); ?>
+                                </div>
+
                                 <?php if(has_category( '', $post->ID )): ?>
-                                    <span class="categories">                         
+                                    <div class=" label categories"> 
+                                        <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
                                         <?php the_category(' '); ?>                  
-                                    </span>&nbsp;
+                                    </div>
                                 <?php endif; ?>
                                 
-                                <?php if(has_post_thumbnail()): ?> 
-                                    <figure>
-                                            <a href="<?php the_permalink(); ?>" class="th">
-                                                <?php the_post_thumbnail(array(600,250)); ?>
-                                            </a>
-                                        </figure>
-                                        <br />
-                                    <?php endif; ?>
-                                    
-                                    
-                                    <?php 
-                                    if(!empty($post->post_excerpt)) :
-                                        the_excerpt();
-                                        ?>
-                                        <a href="<?php the_permalink(); ?>" class="more-link">Lire la suite</a>
-                                        <?php
-                                    else:
-                                        ?>  <?php
-                                        the_content('Lire la suite');
-                                    endif; 
+                                <?php 
+                                if(!empty($post->post_excerpt)) :
+                                    the_excerpt();
                                     ?>
-                            </article>
-                            <div class="post-divider"></div>            
-                            
-                        <?php endwhile; ?>
+                                    <a href="<?php the_permalink(); ?>" class="btn btn-default btn-center">Lire la suite</a>
+                                    <?php
+                                else:
+                                    ?>  <?php
+                                    the_content('Lire la suite');
+                                endif; 
+                                ?>
+                            </article>           
+                        </div>
+                    <?php endwhile; ?>
                     <?php else: ?>
                             <article class="panel">
                                 <h2>Pas d'article trouvé!</h2>
@@ -63,8 +77,34 @@
                                 <br />
                             </article>
                     <?php endif; ?>
-                </div> 
+                </div>
+            </main>
+            <div class="row">
+                <?php if (get_next_posts_link() || get_previous_posts_link()): ?>
+                    <div class="col-lg-12">
+                        <nav class="text-center">
+                            <ul class="pager">                                        
+                                <?php if (get_previous_posts_link()): ?>
+                                    <li class="previous">
+                                        <?php previous_posts_link('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Pr&#xE9;c&#xE9;dent'); ?>
+                                    </li>  
+                                <?php endif; ?>
+                                <?php if (get_next_posts_link()): ?>
+                                    <li class="next">
+                                        <?php next_posts_link('Suivant <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>'); ?>
+                                    </li>
+                                <?php endif; ?>                                             
+                            </ul>
+                        </nav>
+                    </div>
+                <?php endif; ?>
             </div>
-        </div>
-    </main>
+        </div><!-- /.blog-main -->
+
+        <aside class="col-lg-3">
+            <?php get_sidebar(); ?>
+        </aside>       
+
+      </div><!-- /.row -->
+    </div><!-- /.container -->
 <?php get_footer(); ?>

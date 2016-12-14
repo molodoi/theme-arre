@@ -5,66 +5,75 @@
 ?>
 <?php get_header(); ?>
     <main>
-    image.php
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <?php if(have_posts()): ?>
-                        <?php while(have_posts()): the_post(); ?>
-                            <article id="post-<?php the_ID(); ?>" <?php post_class(' panel'); ?> >
-                                <header>
-                                    <h2>
-                                        <a href="<?php the_permalink(); ?>">
-                                            <?php the_title(); ?>
-                                        </a>
-                                    </h2>
-                                </header>
-                                <span class="secondary label date"><?php the_time(get_option('date_format')); ?></span>&nbsp;
-                                <?php if(has_category( '', $post->ID )): ?>
-                                    <span class="categories">                         
-                                        <?php the_category(' '); ?>                  
-                                    </span>&nbsp;
-                                <?php endif; ?>
-                                
-                                <?php if(has_post_thumbnail()): ?> 
-                                    <figure>
-                                            <a href="<?php the_permalink(); ?>" class="th">
-                                                <?php the_post_thumbnail(array(600,250)); ?>
-                                            </a>
-                                        </figure>
-                                        <br />
-                                    <?php endif; ?>
-                                    
-                                    
-                                    <?php 
-                                    if(!empty($post->post_excerpt)) :
-                                        the_excerpt();
-                                        ?>
-                                        <a href="<?php the_permalink(); ?>" class="more-link">Lire la suite</a>
-                                        <?php
-                                    else:
-                                        ?>  <?php
-                                        the_content('Lire la suite');
-                                    endif; 
-                                    ?>
-                            </article>
-                            <div class="post-divider"></div>            
-                            
-                        <?php endwhile; ?>
-                    <?php else: ?>
-                            <article class="panel">
-                                <h2>Pas d'article trouvé!</h2>
-                                
-                                <br />
-                                <p>
-                                    Aucun article ne correspond à votre requête.					
-                                </p>
-                                <br />
-                                <br />
-                            </article>
+        <?php if(have_posts()): ?>
+            <?php while(have_posts()): the_post(); ?>
+                <header class="header-page">
+                    <h2>
+                        <?php the_title(); ?>
+                    </h2>
+                    <p><?php the_excerpt(); ?></p>
+                    <?php if (function_exists('yoast_breadcrumb')): ?>
+                            <?php yoast_breadcrumb('<ul class="breadcrumb"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <li>', '</li></ul>'); ?>
                     <?php endif; ?>
+                </header>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                                    <article id="post-<?php the_ID(); ?>" <?php post_class(''); ?> 
+                                            <figure>
+                                                    <?php if ( wp_attachment_is_image( $post->id ) ) : $att_image = wp_get_attachment_image_src( $post->id, "full"); ?>
+                                                        <p>
+                                                            <a href="<?php echo wp_get_attachment_url($post->id); ?>" title="<?php the_title(); ?>" rel="attachment">
+                                                                <img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium img-rounded img-responsive" alt="<?php $post->post_excerpt; ?>" />
+                                                            </a>
+                                                        </p>
+                                                    <?php else : ?>
+                                                        <a href="<?php echo wp_get_attachment_url($post->ID) ?>" title="<?php echo wp_specialchars( get_the_title($post->ID), 1 ) ?>" rel="attachment"><?php echo basename($post->guid) ?></a>
+                                                    <?php endif; ?>
+                                            </figure>                                    
+                                            
+                                        <?php 
+                                        if(!empty($post->post_excerpt)) :
+                                            the_excerpt();
+                                            
+                                        endif; 
+                                        ?>
+                                    </article>
+                                    <nav>
+                                        <?php
+                                            $args = array(
+                                                'before' => '<ul class="pagination pagination-lg">',
+                                                'after' => '</ul>',
+                                                'before_link' => '<li>',
+                                                'after_link' => '</li>',
+                                                'current_before' => '<li class="active">',
+                                                'current_after' => '</li>',
+                                                'previouspagelink' => '&laquo;',
+                                                'nextpagelink' => '&raquo;'
+                                            );
+
+                                            bootstrap_link_pages($args);
+                                        ?>
+                                    </nav>
+                                    <div class="post-divider"></div> 
+                                    <hr />           
+                                    
+                                <?php endwhile; ?>
+                            <?php else: ?>
+                                    <article>
+                                        <h2>Pas d'article trouvé!</h2>
+                                        
+                                        <br />
+                                        <p>
+                                            Aucun article ne correspond à votre requête.					
+                                        </p>
+                                        <br />
+                                        <br />
+                                    </article>
+                            
+                        </div> 
+                    </div>   
                 </div> 
-            </div>
-        </div>
+                <?php endif; ?>
     </main>
 <?php get_footer(); ?>

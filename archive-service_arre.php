@@ -1,18 +1,15 @@
 <?php get_header(); ?>
 <header class="header-page">
     <h2>
-        <?php echo apply_filters( 'the_title', get_the_title( get_option( 'page_for_posts' ) ) ); ?>
+        Services d
     </h2>
-
-        <?php echo apply_filters( 'the_content', get_post_field( 'post_content', get_option( 'page_for_posts' ) ) ); ?>
-
     <?php if (function_exists('yoast_breadcrumb')): ?>
             <?php yoast_breadcrumb('<ul class="breadcrumb"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <li>', '</li></ul>'); ?>
     <?php endif; ?>
 </header>
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-12">
             <main>                
                 <?php if(have_posts()): ?>
                     <div class="row">
@@ -25,7 +22,9 @@
                                             <?php the_post_thumbnail('thumbnail', array( 'class' => 'img-full-width img-responsive' )); ?>
                                         </a>
                                     </figure>
-                                <?php endif; ?>
+                                <?php endif; ?> 
+
+                                
                                 <header>
                                     <h2>
                                         <a href="<?php the_permalink(); ?>">
@@ -34,10 +33,6 @@
                                     </h2>                                    
                                 </header>
 
-                                <div class="secondary label date">
-                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
-                                    <?php the_time(get_option('date_format')); ?>
-                                </div>
 
                                 <?php if(has_category( '', $post->ID )): ?>
                                     <div class=" label categories"> 
@@ -57,6 +52,7 @@
                                     the_content('Lire la suite');
                                 endif; 
                                 ?>
+                                
                             </article>           
                         </div>
                     <?php endwhile; ?>
@@ -94,12 +90,8 @@
                     </div>
                 <?php endif; ?>
             </div>
-        </div><!-- /.blog-main -->
-
-        <aside class="col-lg-3">
-            <?php get_sidebar(); ?>
-        </aside>       
+        </div><!-- /.blog-main -->      
 
       </div><!-- /.row -->
     </div><!-- /.container -->
-<?php get_footer(); ?>
+<?php get_footer('rose'); ?>

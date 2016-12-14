@@ -8,29 +8,44 @@ $(function() {
         speed: 600,
     });
 
-    $(window).scroll(function(){
+    $(window).scroll(function() {
         var scr = $(this).scrollTop();
         if (scr > 120) {
             $('.scrollup').fadeIn();
+            $('.navbar').addClass('blur');
         } else {
             $('.scrollup').fadeOut();
+            $('.navbar').removeClass('blur');
+
         }
     });
 
-    $('.scrollup').click(function(){
+    $('.scrollup').click(function() {
         $("html, body").animate({
             scrollTop: 0
         }, 600);
         return false;
     });
 
-    function closeSearch() {
-        var $form = $('.navbar-collapse form[role="search"].active')
-        $form.find('input').val('');
-        $form.removeClass('active');
-    }
+    $('.navbar a.dropdown-toggle').on('click', function(e) {
+        var $el = $(this);
+        var $parent = $(this).offsetParent(".dropdown-menu");
+        $(this).parent("li").toggleClass('open');
 
-    // Show Search if form is not active // event.preventDefault() is important, this prevents the form from submitting
+        if (!$parent.parent().hasClass('nav')) {
+            $el.next().css({ "top": $el[0].offsetTop, "left": $parent.outerWidth() - 4 });
+        }
+
+        $('.nav li.open').not($(this).parents("li")).removeClass("open");
+
+        return false;
+    });
+
+    $('a[href$=".gif"], a[href$=".jpg"], a[href$=".png"], a[href$=".pdf"], a[href$=".doc"], a[href$=".docx"], a[href$=".zip"], a[href$=".txt"], a[href$=".doc"], a[href$=".xls"], a[href$=".xlt"], a[href$=".xlsx"], a[href$=".xlsm"], a[href$=".xltx"], a[href$=".docx"], a[href$=".ppt"], a[href$=".ots"], a[href$=".odc"], a[href$=".odt"]').each(function() {
+        $(this).attr('target', '_blank');
+    });
+
+    /*
     $(document).on('click', '.navbar-collapse form[role="search"]:not(.active) button[type="submit"]', function(event) {
         event.preventDefault();
         var $form = $(this).closest('form'),
@@ -38,8 +53,7 @@ $(function() {
         $form.addClass('active');
         $input.focus();
     });
-    // ONLY FOR DEMO // Please use $('form').submit(function(event)) to track from submission
-    // if your form is ajax remember to call `closeSearch()` to close the search container
+
     $(document).on('click', '.navbar-collapse form[role="search"].active button[type="submit"]', function(event) {
         event.preventDefault();
         var $form = $(this).closest('form'),
@@ -47,6 +61,7 @@ $(function() {
         $('#showSearchTerm').text($input.val());
         closeSearch()
     });
-    
-    
+    */
+
+
 });

@@ -50,10 +50,19 @@
 	add_action('init', 'register_my_menus');
 
 	/**
+	* ADD IMAGE SIZE
+	*/
+	if (function_exists('add_theme_support')) {
+		add_image_size('featured_1140_480', 1140, 480, true);
+	}
+
+	/**
 	 * BOOTSTRAP NAV WALKER FOR MENU
 	 * get_template_directory -> Retrieves the absolute path to the directory of the current theme. 
 	 */
+	
 	require_once( get_template_directory() . '/includes/wp_bootstrap_menunav_walker.php' );
+	require_once( get_template_directory() . '/includes/wp_bootstrap_navwalker.php' );
 
 	/**
 	* INCLURE LES CUSTOM POST TYPE
@@ -73,6 +82,11 @@
 	require( get_template_directory() . '/includes/my_register_sidebars.php' );
 
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+	/**
+	* GALLERIE
+	*/
+	require( get_template_directory() . '/includes/wp_custom_gallery.php' );
 
 	/**
 	* BOOTSTRAP LINKS PAGES
@@ -122,10 +136,10 @@
 				?>
 				<script type='text/javascript'>
 					$(document).ready(function(){
+						<?php if(is_front_page()): ?>
 						var geoloc = "<?php echo (trim($options['arre_geoloc_arre_coordonates']) != '')? $options['arre_geoloc_arre_coordonates']: '50.696437,3.1741172'; ?>";
 						var addrr = "<?php echo (trim($options['arre_address_arre_coordonates']) != '')? $options['arre_address_arre_coordonates']: '14 rue Saint Antoine 59100 Roubaix, France'; ?>";
 						//http://gmap3.net/
-						console.log(geoloc+addrr);
 						$('.map')
 						.gmap3({
 							center: [geoloc],
@@ -146,10 +160,7 @@
 							icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
 							};
 						});
-
-						$('a.social_link ,a[href$=".pdf"], a[href$=".doc"], a[href$=".docx"], a[href$=".zip"], a[href$=".txt"], a[href$=".doc"], a[href$=".xls"], a[href$=".xlt"], a[href$=".xlsx"], a[href$=".xlsm"], a[href$=".xltx"], a[href$=".docx"], a[href$=".ppt"], a[href$=".ots"], a[href$=".odc"], a[href$=".odt"]').each(function(){
-							$(this).attr('target', '_blank');
-						});
+						<?php endif; ?>
 					});
 				</script>
 				<?php

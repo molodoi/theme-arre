@@ -50,8 +50,7 @@ function services_custom_post_type() {
         'publicly_queryable' => true,
         'query_var' => 'arre_service',
         'capability_type' => 'post', /* définit si le nouvel élément est identique à un Post classique ou à une Page classique. Ici on veut un titre et une image miniature donc Post. En général, les Posts sont beaucoup plus intéressants car ils ont davantage de fonctions que les Pages.*/
-        'rewrite' => $rewriteServices,
-        'register_meta_box_cb' => 'add_prices_metaboxes'
+        'rewrite' => $rewriteServices
     );
     register_post_type('service_arre', $argsServices);
     // permet d'ajouter l'élément service_arre à l'admin

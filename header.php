@@ -38,9 +38,8 @@
 <body <?php body_class(); ?> >
     <?php //https://startbootstrap.com/template-overviews/simple-sidebar/ ?>
     <header class="header-top visible-md-block visible-lg-block">        
-        <nav class="navbar navbar-default my-navbar navbar-fixed-top " role="navigation">
+        <!--nav class="navbar navbar-default my-navbar navbar-fixed-top ">
             <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
@@ -53,7 +52,7 @@
                     </h1>
                 </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
+
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <?php
                         wp_nav_menu(array(
@@ -82,9 +81,55 @@
                     
                     <?php get_search_form(); ?>
                     
+                </div>
+            </div>
+        </nav-->
+        <?php
+            //https://www.emanueletessore.com/bootstrap-navbar-under-wordpress/
+        ?>
+        <div class="navbar navbar-default my-navbar navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <?php
+                        wp_nav_menu(array(
+                            'menu' => 'menu-principal',
+                            'depth' => 0,
+                            'container' => false,
+                            'menu_class' => 'nav navbar-nav my-main-menu',
+                            'fallback_cb' => 'wp_page_menu',
+                            'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                            'walker' => new wp_bootstrap_navwalker())
+                        );
+                    ?>
+                    
+                    
+                    <?php get_search_form(); ?>
+                    <?php
+                        if( is_user_logged_in() ):
+                            wp_nav_menu(array(
+                                'menu' => 'menu-membres', // identifiant du menu, défini dans functions.php
+                                'depth' => 0, // profondeur de menu admise (0 pour no-limit)
+                                'container' => false, // élément conteneur
+                                'menu_class' => 'nav navbar-nav navbar-right', // class du menu
+                                'fallback_cb' => 'wp_page_menu', //fonction de substitution à utiliser si le menu n'existe pas
+                                'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>', //défini la forme du menu (ul, ol, rien...)
+                                'walker' => new wp_bootstrap_navwalker()) //le rôle du Walker est de redéfinir leur comportement, la façon dont elles vont créer ces listes.
+                            );
+
+                        endif;
+                    ?>
                 </div><!--/.nav-collapse -->
             </div>
-        </nav>
+        </div>
+
         <?php
             /*
             //EXEMPLE :
@@ -110,3 +155,4 @@
             */
         ?>
     </header>
+    <br />

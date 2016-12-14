@@ -46,43 +46,59 @@ $options = get_option('arre_custom_settings');
                             <article id="post-<?php the_ID(); ?>" <?php post_class(''); ?> >
                                 <header>
                                     <h2>
-                                            <?php the_title(); ?>
+                                        <?php the_title(); ?>
                                     </h2>
-                                </header>
-                                <span class="secondary label date"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <?php the_time(get_option('date_format')); ?></span>&nbsp;
-                                <?php if(has_category( '', $post->ID )): ?>
-                                    <span class="categories">                         
-                                        <?php the_category(' '); ?>                  
-                                    </span>&nbsp;
-                                <?php endif; ?>
-                                
+                                </header>                              
+                                    
                                 <?php if(has_post_thumbnail()): ?> 
                                     <figure>
-                                            <a href="<?php the_permalink(); ?>" class="th">
-                                                <?php the_post_thumbnail(array(600,250)); ?>
-                                            </a>
-                                        </figure>
-                                        <br />
-                                    <?php endif; ?>
+                                            <?php the_post_thumbnail('featured_1140_480', array( 'class' => 'img-rounded img-responsive' )); ?>
+                                            <?php if(get_post(get_post_thumbnail_id())->post_excerpt != ''): ?>
+                                                <figcaption>
+                                                    <p>
+                                                        <small>
+                                                            <?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?>  
+                                                        <em><?php echo get_post(get_post_thumbnail_id())->post_content; ?></em>
+                                                        </small>
+                                                    </p>
+                                                </figcaption>
+                                            <?php endif; ?>
+                                    </figure>
+                                <?php endif; ?>                                    
                                     
-                                    
-                                    <?php 
-                                    if(!empty($post->post_excerpt)) :
-                                        the_excerpt();
-                                        ?>
-                                        <a href="<?php the_permalink(); ?>" class="more-link">Lire la suite</a>
-                                        <?php
-                                    else:
-                                        ?>  <?php
-                                        the_content('Lire la suite');
-                                    endif; 
+                                <?php 
+                                if(!empty($post->post_excerpt)) :
+                                    the_excerpt();
                                     ?>
+                                    <a href="<?php the_permalink(); ?>" class="more-link">Lire la suite</a>
+                                    <?php
+                                else:
+                                    ?>  <?php
+                                    the_content('Lire la suite');
+                                endif; 
+                                ?>
                             </article>
-                            <div class="post-divider"></div>            
+                            <nav>
+                                <?php
+                                    $args = array(
+                                        'before' => '<ul class="pagination pagination-lg">',
+                                        'after' => '</ul>',
+                                        'before_link' => '<li>',
+                                        'after_link' => '</li>',
+                                        'current_before' => '<li class="active">',
+                                        'current_after' => '</li>',
+                                        'previouspagelink' => '&laquo;',
+                                        'nextpagelink' => '&raquo;'
+                                    );
+
+                                    bootstrap_link_pages($args);
+                                ?>
+                            </nav>
+                            <div class="post-divider"></div>           
                             
                         <?php endwhile; ?>
                     <?php else: ?>
-                            <article class="panel">
+                            <article>
                                 <h2>Pas d'article trouvé!</h2>
                                 
                                 <br />
@@ -129,42 +145,41 @@ $options = get_option('arre_custom_settings');
             <div class="container">
                 <div class="row">
                     <?php if(!empty($options)): ?> 
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-4 text-center" style="padding: 60px 0px;">
                             <img src="<?php print IMG_DIR; ?>/logo-arre-nav.png" alt="logo de l'arre" />
                             <h3 class="asso-subtitle">Association Ressource pour la Réussite Éducative</h3>                        
                             <ul class="social-network social-circle">
                                 <?php if(trim($options['arre_facebook_social_platform']) != ''): ?>
-                                        <li><a href="<?php echo $options['arre_facebook_social_platform'] ?>" class="icoFacebook" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>  
+                                        <li><a href="<?php echo $options['arre_facebook_social_platform'] ?>" class="icoFacebook" title="Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>  
                                 <?php endif; ?>
 
                                 <?php if(trim($options['arre_youtube_social_platform']) != ''): ?>
-                                        <li><a href="<?php echo $options['arre_youtube_social_platform'] ?>" class="icoYoutube" title="Youtube"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>  
+                                        <li><a href="<?php echo $options['arre_youtube_social_platform'] ?>" class="icoYoutube" title="Youtube" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>  
                                 <?php endif; ?>
 
                                 <?php if(trim($options['arre_google_social_platform']) != ''): ?>
-                                        <li><a href="<?php echo $options['arre_google_social_platform'] ?>" class="icoGoogle" title="Google +"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>  
+                                        <li><a href="<?php echo $options['arre_google_social_platform'] ?>" class="icoGoogle" title="Google +" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>  
                                 <?php endif; ?>
 
                                 <?php if(trim($options['arre_twitter_social_platform']) != ''): ?>
-                                        <li><a href="<?php echo $options['arre_twitter_social_platform'] ?>" class="icoTwitter" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>  
+                                        <li><a href="<?php echo $options['arre_twitter_social_platform'] ?>" class="icoTwitter" title="Twitter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>  
                                 <?php endif; ?>
 
                                 <?php if(trim($options['arre_viadeo_social_platform']) != ''): ?>
-                                        <li><a href="<?php echo $options['arre_viadeo_social_platform'] ?>" class="icoViadeo" title="Viadeo"><i class="fa fa-viadeo" aria-hidden="true"></i></a></li>  
+                                        <li><a href="<?php echo $options['arre_viadeo_social_platform'] ?>" class="icoViadeo" title="Viadeo" target="_blank"><i class="fa fa-viadeo" aria-hidden="true"></i></a></li>  
                                 <?php endif; ?>
 
                                 <?php if(trim($options['arre_linkedin_social_platform']) != ''): ?>
-                                        <li><a href="<?php echo $options['arre_linkedin_social_platform'] ?>" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>  
+                                        <li><a href="<?php echo $options['arre_linkedin_social_platform'] ?>" class="icoLinkedin" title="Linkedin" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>  
                                 <?php endif; ?>
 
                                 <?php if(trim($options['arre_pinterest_social_platform']) != ''): ?>
-                                        <li><a href="<?php echo $options['arre_pinterest_social_platform'] ?>" class="icoPinterest" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>  
+                                        <li><a href="<?php echo $options['arre_pinterest_social_platform'] ?>" class="icoPinterest" title="Pinterest" target="_blank"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>  
                                 <?php endif; ?>
 
                                 <?php if(trim($options['arre_instagram_social_platform']) != ''): ?>
-                                        <li><a href="<?php echo $options['arre_instagram_social_platform'] ?>" class="icoInstagram" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>  
+                                        <li><a href="<?php echo $options['arre_instagram_social_platform'] ?>" class="icoInstagram" title="Instagram" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>  
                                 <?php endif; ?>
-
                             </ul>
                         </div>
                     <?php endif; ?>

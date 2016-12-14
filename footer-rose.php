@@ -1,7 +1,7 @@
 <?php
     $options = get_option('arre_custom_settings');
 ?>
-    <footer>
+    <footer class="rose">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">

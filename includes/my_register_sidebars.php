@@ -10,24 +10,12 @@ if (function_exists('register_sidebar')) {
                     'name' => 'Barre Latérale Blog',
                     'id' => 'main-sidebar',
                     'description' => 'Cette Zone se situe uniquement sur la page d\'accueil, en dessous de la zone "Notre sélection du traiteur" et peut accueillir 1 Widget maximum de dimension L:1200px H:450px. Respecter le nombre de widgets pour ne pas destructurer le site.',
-                    'before_widget' => '<div class="col-lg-12"><div id="%1$s" class="widget %2$s"><br />',
-                    'after_widget' => '</div></div>',
-                    'before_title' => '',
-                    'after_title' => ''
+                    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                    'after_widget' => '</div>',
+                    'before_title' => '<h6>',
+                    'after_title' => '</h6><hr />'
                 )
         );
-
-    register_sidebar(
-            array(
-                'name' => 'Google map section',
-                'id' => 'googlemap-sidebar',
-                'description' => 'Cette Zone se situe uniquement sur la page d\'accueil, en dessous de la zone "Notre sélection du traiteur" et peut accueillir 1 Widget maximum de dimension L:1200px H:450px. Respecter le nombre de widgets pour ne pas destructurer le site.',
-                'before_widget' => '<div class="col-lg-12"><div id="%1$s" class="widget %2$s"><br />',
-                'after_widget' => '</div></div>',
-                'before_title' => '',
-                'after_title' => ''
-            )
-    );
 
     register_sidebar(
             array(

@@ -1,6 +1,6 @@
 <?php
-/* attachment.php
- * Le modèle de pièce jointe est utilisé lors de la visualisation d'une pièce jointe unique comme une image, un fichier PDF ou un autre fichier multimédia.
+/* single-service.php
+ * Le modèle de poste service unique est utilisé lorsqu'un visiteur demande un poste unique. Pour cela, et tous les autres modèles de requêtes, index.php est utilisé si le modèle de requête n'est pas présent.
  */
 ?>
 <?php get_header(); ?>
@@ -13,31 +13,41 @@
                     </h2>
                     <p><?php the_excerpt(); ?></p>
                     <?php if (function_exists('yoast_breadcrumb')): ?>
-                            <?php yoast_breadcrumb('<ul class="breadcrumb"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <li>', '</li></ul>'); ?>
+                             <?php yoast_breadcrumb('<ul class="breadcrumb"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <li>', '</li></ul>'); ?>
                     <?php endif; ?>
                 </header>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                                    <article id="post-<?php the_ID(); ?>" <?php post_class(''); ?> 
+                                    <article id="post-<?php the_ID(); ?>" <?php post_class(''); ?> >
+                                        <?php if(has_post_thumbnail()): ?> 
                                             <figure>
-                                                    <?php if ( wp_attachment_is_image( $post->id ) ) : $att_image = wp_get_attachment_image_src( $post->id, "full"); ?>
-                                                        <p>
-                                                            <a href="<?php echo wp_get_attachment_url($post->id); ?>" title="<?php the_title(); ?>" rel="attachment">
-                                                                <img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium img-rounded img-responsive" alt="<?php $post->post_excerpt; ?>" />
-                                                            </a>
-                                                        </p>
-                                                    <?php else : ?>
-                                                        <a href="<?php echo wp_get_attachment_url($post->ID) ?>" title="<?php echo wp_specialchars( get_the_title($post->ID), 1 ) ?>" rel="attachment"><?php echo basename($post->guid) ?></a>
+                                                    <?php the_post_thumbnail('featured_1140_480', array( 'class' => 'img-rounded img-responsive' )); ?>
+                                                    <?php if(get_post(get_post_thumbnail_id())->post_excerpt != ''): ?>
+                                                        <figcaption>
+                                                            <p>
+                                                                <small>
+                                                                    <?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?>  
+                                                                <em><?php echo get_post(get_post_thumbnail_id())->post_content; ?></em>
+                                                                </small>
+                                                            </p>
+                                                        </figcaption>
+                                                        
                                                     <?php endif; ?>
-                                            </figure>                                    
+                                            </figure>
+                                        <?php endif; ?>                                    
                                             
-                                        <?php 
-                                        if(!empty($post->post_excerpt)) :
-                                            the_excerpt();
-                                            
-                                        endif; 
-                                        ?>
+                                        
+                                        <?php the_content('Lire la suite'); ?>
+                                            <ul class="nav nav-pills text-right">
+                                                <?php 
+                                                    $terms = get_terms('formationstype');
+
+                                                    foreach ( $terms as $term ) {
+                                                        echo '<li role="presentation"><a href="'.$term->slug.'">'.$term->name.'</a></li>';
+                                                    }
+                                                ?>
+                                            </ul>  
                                     </article>
                                     <nav>
                                         <?php

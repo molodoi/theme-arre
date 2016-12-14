@@ -76,7 +76,7 @@ function create_formations_taxonomies() {
         'show_ui' => true,
         'show_admin_column' => true,
         'query_var' => true,
-        'rewrite' => array('slug' => 'cat_formations'),
+        'rewrite' => array('slug' => 'category-formations/%category%'),
     );
 
 

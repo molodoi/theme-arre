@@ -4,14 +4,27 @@
  */
 ?>
 <?php get_header(); ?>
+    <header class="header-page">
+        <h2>OUPS!!!</h2>
+        <?php if (function_exists('yoast_breadcrumb')): ?>
+                <?php yoast_breadcrumb('<ul class="breadcrumb"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <li>', '</li></ul>'); ?>
+        <?php endif; ?>
+    </header>
     <main>
-        page.php
+
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="bitter_font_h1 txt_purple">OUPS!!</h2>
-                    <h3 class="bitter_font_h2">La page que vous cherchez n'existe pas.</h3>
-                    <p class="bitter_font">Pas de panique voici la solution :<br /> Utilisez le moteur de recherche ci-dessus pour trouver votre bonheur.</p>
+                <div class="col-lg-12 text-center">
+                    <br />
+                    <br />
+                    <img src="<?php print IMG_DIR; ?>/logo-arre-nav.png" alt="logo de l'arre" />
+                    <h4 class="asso-subtitle">Association Ressource pour la Réussite Éducative</h4> 
+                    <br />
+                    <h2>404</h2>
+                    <h3>La page que vous cherchez n'existe pas.</h3>
+                    <br />
+                    <br />
+                    <br />
                     <a href="<?php echo home_url(); ?>" class="btn btn-default">Retour à l'accueil</a>
                 </div> 
             </div>
