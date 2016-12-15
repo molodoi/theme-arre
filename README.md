@@ -31,7 +31,6 @@ Install
 - Move to theme directory : cd theme-arre
 - Install packages : npm install
 - Install bootstrap : bower install bootstrap-sass -S
-- Install bootstrap : bower install swiper
 - Install bootstrap : bower install ekko-lightbox#3.0.3
 - Download Livereload extension/Add it to your Chrome Extensions and activated it : https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
 - Start watch with gulp : gulp watch
