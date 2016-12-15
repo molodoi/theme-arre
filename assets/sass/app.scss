@@ -4,8 +4,6 @@
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables';
 @import '../../bower_components/font-awesome-sass/assets/stylesheets/_font-awesome';
-@import '../../bower_components/swiper/dist/css/swiper.min.css';
-//@import '../../bower_components/ekko-lightbox/dist/ekko-lightbox.min.css';
 $label-color: #2d2e2e !default;
 body {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -119,53 +117,6 @@ main {
 .map {
     height: 450px;
     width: auto;
-}
-
-
-/* -------------------------------------------------- 
-:: SWIPER - HOME SLIDER
------------------------------------------------------*/
-
-.swiper-container {
-    width: 100%;
-    min-height: 500px;
-    height: 100%;
-    background: #f2f2f2;
-}
-
-.swiper-slide {
-    font-size: 18px;
-    color: #2d2e2e;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 40px 60px;
-}
-
-.parallax-bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 130%;
-    height: 100%;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center;
-}
-
-.swiper-slide .title {
-    font-family: 'Roboto slab';
-    font-size: 41px;
-    font-weight: 700;
-}
-
-.swiper-slide .subtitle {
-    font-size: 21px;
-}
-
-.swiper-slide .text {
-    font-size: 16px;
-    max-width: 450px;
-    line-height: 1.6em;
 }
 
 
@@ -396,6 +347,8 @@ header.header-page ul.breadcrumb li a {
 header.header-page ul.breadcrumb li a:hover {
     text-decoration: underline;
 }
+
+header.header-xs-sm-page {}
 
 
 /* -------------------------------------------------- 

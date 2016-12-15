@@ -183,4 +183,28 @@
 
 	endif;
 
+	/*********************
+	* re-order left admin menu
+	**********************/
+	function reorder_admin_menu( $__return_true ) {
+		return array(
+			'index.php', // Dashboard
+			'edit.php?post_type=page', // Pages 
+			'edit.php', // Posts
+			'edit.php?post_type=service_arre', // Posts
+			'edit.php?post_type=formation_arre', // Posts
+			'edit.php?post_type=arreswiperslider', // Posts			
+			'upload.php', // Media
+			'separator1', // --Space--
+			'themes.php', // Appearance
+			'edit-comments.php', // Comments 
+			'users.php', // Users
+			
+			'tools.php', // Tools
+			'options-general.php', // Settings
+			'plugins.php', // Plugins
+		);
+	}
+	add_filter( 'custom_menu_order', 'reorder_admin_menu' );
+	add_filter( 'menu_order', 'reorder_admin_menu' );
 ?>

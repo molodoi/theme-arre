@@ -38,8 +38,8 @@ gulp.task('scripts', function() {
     return gulp.src([
             bower + '/jquery/dist/jquery.js',
             bower + '/bootstrap-sass/assets/javascripts/bootstrap.js',
-            bower + '/swiper/dist/js/swiper.min.js',
-            bower + '/swiper/dist/js/swiper.jquery.min.js',
+            //bower + '/swiper/dist/js/swiper.min.js',
+            //bower + '/swiper/dist/js/swiper.jquery.min.js',
             //bower + '/ekko-lightbox/dist/ekko-lightbox.min.js',
             bower + '/ekko-lightbox/ekko-lightbox.js',
             './assets/js/**/*.js'
@@ -78,8 +78,8 @@ gulp.task('watch', function() {
     gulp.watch([
         bower + '/jquery/dist/jquery.js',
         bower + '/bootstrap-sass/assets/javascripts/bootstrap.js',
-        bower + '/swiper/dist/js/swiper.min.js',
-        bower + '/swiper/dist/js/swiper.jquery.min.js',
+        //bower + '/swiper/dist/js/swiper.min.js',
+        //bower + '/swiper/dist/js/swiper.jquery.min.js',
         //bower + '/ekko-lightbox/dist/ekko-lightbox.min.js',
         bower + '/ekko-lightbox/ekko-lightbox.js',
         './assets/js/**/*.js'

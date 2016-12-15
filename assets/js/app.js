@@ -1,13 +1,4 @@
 $(function() {
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        parallax: true,
-        speed: 600,
-    });
-
     $(window).scroll(function() {
         var scr = $(this).scrollTop();
         if (scr > 120) {
@@ -62,6 +53,5 @@ $(function() {
         closeSearch()
     });
     */
-
 
 });
