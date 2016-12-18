@@ -24,7 +24,7 @@ gulp.task('styles', function() {
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer('last 2 version'))
         .pipe(rename('app.css'))
-        .pipe(minifycss())
+        //.pipe(minifycss())
         .pipe(gulp.dest('css/'))
         .pipe(size())
         .pipe(livereload({ start: true }))
@@ -38,6 +38,7 @@ gulp.task('scripts', function() {
     return gulp.src([
             bower + '/jquery/dist/jquery.js',
             bower + '/bootstrap-sass/assets/javascripts/bootstrap.js',
+            bower + '/jasny-bootstrap/dist/js/jasny-bootstrap.min.js',
             //bower + '/swiper/dist/js/swiper.min.js',
             //bower + '/swiper/dist/js/swiper.jquery.min.js',
             //bower + '/ekko-lightbox/dist/ekko-lightbox.min.js',
@@ -78,6 +79,7 @@ gulp.task('watch', function() {
     gulp.watch([
         bower + '/jquery/dist/jquery.js',
         bower + '/bootstrap-sass/assets/javascripts/bootstrap.js',
+        bower + '/jasny-bootstrap/dist/js/jasny-bootstrap.min.js',
         //bower + '/swiper/dist/js/swiper.min.js',
         //bower + '/swiper/dist/js/swiper.jquery.min.js',
         //bower + '/ekko-lightbox/dist/ekko-lightbox.min.js',

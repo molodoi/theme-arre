@@ -32,5 +32,6 @@ Install
 - Install packages : npm install
 - Install bootstrap : bower install bootstrap-sass -S
 - Install bootstrap : bower install ekko-lightbox#3.0.3
+- Install mobile navigation with jasny-bootstrap : bower install jasny-bootstrap
 - Download Livereload extension/Add it to your Chrome Extensions and activated it : https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
 - Start watch with gulp : gulp watch

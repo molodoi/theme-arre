@@ -37,8 +37,45 @@
 </head>
 <body <?php body_class(); ?> >
 
+    <div class="navmenu navmenu-default navmenu-fixed-left offcanvas hidden-lg">
+            <a class="navmenu-brand" href="#"><?php bloginfo('blogname'); ?></a>
+            <?php
+                wp_nav_menu(array(
+                    'menu' => 'menu-principal',
+                    'depth' => 0,
+                    'container' => false,
+                    'menu_class' => 'nav navmenu-nav my-menu-mobile',
+                    'fallback_cb' => 'wp_page_menu',
+                    'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                    'walker' => new wp_bootstrap_navwalker())
+                );
+            ?>
+
+            <?php
+                if( is_user_logged_in() ):
+                    wp_nav_menu(array(
+                        'menu' => 'menu-membres', // identifiant du menu, défini dans functions.php
+                        'depth' => 0, // profondeur de menu admise (0 pour no-limit)
+                        'container' => false, // élément conteneur
+                        'menu_class' => 'nav navbar-nav navbar-right', // class du menu
+                        'fallback_cb' => 'wp_page_menu', //fonction de substitution à utiliser si le menu n'existe pas
+                        'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>', //défini la forme du menu (ul, ol, rien...)
+                        'walker' => new wp_bootstrap_navwalker()) //le rôle du Walker est de redéfinir leur comportement, la façon dont elles vont créer ces listes.
+                    );
+
+                endif;
+            ?> 
+        </div>
+        <div class="navbar navbar-default navbar-fixed-top hidden-lg">
+            <button type="button" class="navbar-toggle  hidden-lg" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
     <?php //https://startbootstrap.com/template-overviews/simple-sidebar/ ?>
-    <header class="header-top visible-md-block visible-lg-block">
+    <header class="header-top  hidden-xs hidden-sm hidden-md">
         <div class="navbar navbar-default my-navbar navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -107,3 +144,6 @@
             */
         ?>
     </header>
+
+
+  

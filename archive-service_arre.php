@@ -32,7 +32,13 @@
                                         </a>
                                     </h2>                                    
                                 </header>
-
+                                <div class="label format">
+                                   <?php  
+                                        $format = get_post_format() ? : 'standard';  
+                                        /* aside, chat, gallery, link, image, quote, status, video, audio */                                      
+                                        get_template_part( 'partials/format', $format );                                        
+                                   ?>
+                                </div>
 
                                 <?php if(has_category( '', $post->ID )): ?>
                                     <div class=" label categories"> 

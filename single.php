@@ -37,10 +37,28 @@
                                             </figure>
                                         <?php endif; ?>                                    
                                             
+                                        <div class="label format">
                                         
                                         <?php the_content('Lire la suite'); ?>
-                                        Catégories : <?php the_category(' '); ?>
-                                        <?php the_tags('Mots clés : ', ' ', ''); ?>
+                                        <?php  
+                                                $format = get_post_format() ? : 'standard';  
+                                                /* aside, chat, gallery, link, image, quote, status, video, audio */                                      
+                                                get_template_part( 'partials/format', $format );                                        
+                                        ?>
+                                        </div>
+                                        <?php if(has_category( '', $post->ID )): ?>
+                                            <div class=" label categories"> 
+                                                <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
+                                                <?php the_category(' '); ?>                  
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if(has_tag( '', $post->ID )): ?>
+                                        <div class=" label terms"> 
+                                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>                          
+                                            <?php the_tags('Mots clés : ', ' ', ''); ?>                 
+                                        </div>
+                                        <?php endif; ?>
+                                        
                                     </article>
                                     <nav>
                                         <?php

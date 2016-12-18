@@ -25,13 +25,13 @@
 	add_theme_support('post-thumbnails', array('menus', 'post', 'page'));
 	add_theme_support(
 	'post-formats', array(
-			//'aside',
-			//'chat',
-			//'gallery',
+			'aside',
+			'chat',
+			'gallery',
 			'image',
 			'link',
 			'quote',
-			//'status',
+			'status',
 			'video',
 			'audio'
 		)
@@ -129,6 +129,7 @@
 			wp_enqueue_script('app-js', JS_DIR.'/app.js', null, '3.1.1', true);
 			wp_enqueue_script('gmaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBcVcz5OZ6eNBi5d7CFYHIdtsEI5BQlm68&libraries=places', null, '3.1.1', true);
 			wp_enqueue_script('jquery-gmaps', JS_DIR.'/gmap3.min.js', null, '3.1.1', true);
+			//wp_enqueue_script('jasny-bootstrap-js', 'https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js', null, '3.1.1', true);
 
 
 			function mycustom_script() {
@@ -175,6 +176,9 @@
 		function wpt_register_css() {
 			wp_enqueue_style('font--awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', null, '4.2.0', 'all');
 			wp_enqueue_style('style', CSS_DIR . '/app.css', null, '3.3.5', 'all');
+			//wp_enqueue_style('jasny-bootstrap-css', 'https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.css', null, '4.2.0', 'all');
+			//wp_enqueue_style('jasny-bootstrap-map', 'https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.css.map', null, '4.2.0', 'all');
+			
 			//wp_enqueue_style('swiper-css', SWIPER_CSS_DIR, null, '3.3.5', 'all');
 		}
 

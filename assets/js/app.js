@@ -36,6 +36,8 @@ $(function() {
         $(this).attr('target', '_blank');
     });
 
+
+
     /*
     $(document).on('click', '.navbar-collapse form[role="search"]:not(.active) button[type="submit"]', function(event) {
         event.preventDefault();

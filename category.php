@@ -33,7 +33,13 @@
                                         </a>
                                     </h2>                                    
                                 </header>
-
+                                <div class="label format">
+                                   <?php  
+                                        $format = get_post_format() ? : 'standard';  
+                                        /* aside, chat, gallery, link, image, quote, status, video, audio */                                      
+                                        get_template_part( 'partials/format', $format );                                        
+                                   ?>
+                                </div>
                                 <div class="secondary label date">
                                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
                                     <?php the_time(get_option('date_format')); ?>
