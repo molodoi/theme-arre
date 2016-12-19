@@ -22,9 +22,7 @@
                                             <?php the_post_thumbnail('thumbnail', array( 'class' => 'img-full-width img-responsive' )); ?>
                                         </a>
                                     </figure>
-                                <?php endif; ?> 
-
-                                
+                                <?php endif; ?>                                 
                                 <header>
                                     <h2>
                                         <a href="<?php the_permalink(); ?>">
@@ -57,8 +55,7 @@
                                     ?>  <?php
                                     the_content('Lire la suite');
                                 endif; 
-                                ?>
-                                
+                                ?>                                
                             </article>           
                         </div>
                     <?php endwhile; ?>

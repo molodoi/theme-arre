@@ -57,7 +57,7 @@
                         'menu' => 'menu-membres', // identifiant du menu, défini dans functions.php
                         'depth' => 0, // profondeur de menu admise (0 pour no-limit)
                         'container' => false, // élément conteneur
-                        'menu_class' => 'nav navbar-nav navbar-right', // class du menu
+                        'menu_class' => 'nav navmenu-nav my-menu-mobile', // class du menu
                         'fallback_cb' => 'wp_page_menu', //fonction de substitution à utiliser si le menu n'existe pas
                         'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>', //défini la forme du menu (ul, ol, rien...)
                         'walker' => new wp_bootstrap_navwalker()) //le rôle du Walker est de redéfinir leur comportement, la façon dont elles vont créer ces listes.

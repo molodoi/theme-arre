@@ -8588,6 +8588,11 @@ a:hover {
 .img-full-width {
   width: 100%; }
 
+.ekko-lightbox-container img {
+  display: block;
+  max-width: 100%;
+  height: auto; }
+
 blockquote {
   font-size: 1em;
   background: #f9f9f9;
@@ -8640,6 +8645,38 @@ main {
 .map {
   height: 450px;
   width: auto; }
+
+.alignnone {
+  margin: 5px 20px 20px 0; }
+
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto; }
+
+.alignright {
+  float: right;
+  margin: 5px 0 20px 20px; }
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0; }
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px; }
+
+a img.alignnone {
+  margin: 5px 20px 20px 0; }
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0; }
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
 
 /* -------------------------------------------------- 
 :: SCROLLUP
@@ -9188,6 +9225,11 @@ ul.gallery li {
     left: -300px; }
   ul.nav li:hover > ul.dropdown-menu {
     display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ }
   /*
     .dropdown-submenu:hover>.dropdown-menu {
         display: block;
@@ -9215,9 +9257,7 @@ ul.gallery li {
         left: -100%;
         margin-left: 10px;
     }
-    */
-  header.header-page {
-    margin-top: 40px; } }
+    */ }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
@@ -9306,4 +9346,136 @@ ul.gallery li {
     padding: 0; }
   .navbar-toggle {
     display: none;
+    /* force showing the toggle */ } }
+
+/* ----------- iPad mini ----------- */
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ } }
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ } }
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ } }
+
+/* ----------- iPad 1 and 2 ----------- */
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ } }
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ } }
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ } }
+
+/* ----------- iPad 3 and 4 ----------- */
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ } }
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ } }
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
+    /* force showing the toggle */ } }
+
+@media (max-width: 1200px) {
+  .navmenu-fixed-left,
+  .navbar-offcanvas.navmenu-fixed-left {
+    left: -300px; }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block; }
+  header.header-page {
+    margin-top: 40px; }
+  .navbar-toggle {
+    display: block;
     /* force showing the toggle */ } }

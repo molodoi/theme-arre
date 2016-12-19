@@ -11,7 +11,6 @@
                     <h2>
                         <?php the_title(); ?>
                     </h2>
-                    <p><?php the_excerpt(); ?></p>
                     <?php if (function_exists('yoast_breadcrumb')): ?>
                             <?php yoast_breadcrumb('<ul class="breadcrumb"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <li>', '</li></ul>'); ?>
                     <?php endif; ?>
@@ -37,15 +36,7 @@
                                         <?php endif; ?>                                    
                                             
                                         <?php 
-                                        if(!empty($post->post_excerpt)) :
-                                            the_excerpt();
-                                            ?>
-                                            <a href="<?php the_permalink(); ?>" class="more-link">Lire la suite</a>
-                                            <?php
-                                        else:
-                                            ?>  <?php
                                             the_content('Lire la suite');
-                                        endif; 
                                         ?>
                                     </article>
                                     <nav>

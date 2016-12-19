@@ -8,7 +8,6 @@ Template Name: Page des formations
             <h2>
                 <?php the_title(); ?>
             </h2>
-            <p><?php the_excerpt(); ?></p>
             <?php if (function_exists('yoast_breadcrumb')): ?>
                     <?php yoast_breadcrumb('<ul class="breadcrumb"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <li>', '</li></ul>'); ?>
             <?php endif; ?>
@@ -17,7 +16,7 @@ Template Name: Page des formations
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $args = array(
                 'caller_get_posts'=>1,
-                'post_type' => 'service_arre',
+                'post_type' => 'formation_arre',
                 'orderby' => 'menu_order',
                 'paged'=>$paged
             );
@@ -46,6 +45,13 @@ Template Name: Page des formations
                                                     </a>
                                                 </h2>                                    
                                             </header>
+                                            <div class="label format">
+                                            <?php  
+                                                    $format = get_post_format() ? : 'standard';  
+                                                    /* aside, chat, gallery, link, image, quote, status, video, audio */                                      
+                                                    get_template_part( 'partials/format', $format );                                        
+                                            ?>
+                                            </div>
 
                                             <div class="secondary label date">
                                                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
@@ -60,15 +66,7 @@ Template Name: Page des formations
                                             <?php endif; ?>
                                             
                                             <?php 
-                                            if(!empty($post->post_excerpt)) :
-                                                the_excerpt();
-                                                ?>
-                                                <a href="<?php the_permalink(); ?>" class="btn btn-default btn-center">Lire la suite</a>
-                                                <?php
-                                            else:
-                                                ?>  <?php
                                                 the_content('Lire la suite');
-                                            endif; 
                                             ?>
                                         </article>           
                                     </div>
