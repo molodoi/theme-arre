@@ -1,5 +1,5 @@
 <?php 
-	$options = get_option('arre_custom_settings');
+	
 	/**
 	* DEFINE CONSTANTS
 	*/
@@ -55,6 +55,11 @@
 	require( get_template_directory() . '/includes/clean_up_wp_arre.php' );
 
 	/**
+	* My Videos Shorcode
+	*/
+	require( get_template_directory() . '/includes/wp_videos_shortcode.php' );
+
+	/**
 	* CRÉATION DES SIDEBARS & ZONE DE WIDGETS
 	*/
 	require( get_template_directory() . '/includes/my_register_sidebars.php' );
@@ -105,16 +110,21 @@
 			//wp_enqueue_script('jquery', JQUERY_DIR, null, '3.1.1', true);
 
 			wp_enqueue_script('app-js', JS_DIR.'/app.js', null, '3.1.1', true);
-			wp_enqueue_script('gmaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBcVcz5OZ6eNBi5d7CFYHIdtsEI5BQlm68&libraries=places', null, '3.1.1', true);
+			if(is_front_page()):
+			$google_api_key = (trim($options['arre_google_apikey_coordonates']) != '')? $options['arre_google_apikey_coordonates']: 'AIzaSyBcVcz5OZ6eNBi5d7CFYHIdtsEI5BQlm68';
+			//var_dump($google_api_key);
+			wp_enqueue_script('gmaps', 'https://maps.googleapis.com/maps/api/js?key='.$google_api_key.'&libraries=places', null, '3.1.1', true);
 			wp_enqueue_script('jquery-gmaps', JS_DIR.'/gmap3.min.js', null, '3.1.1', true);
 
 			function mycustom_script() {
+				$options = get_option('arre_custom_settings');
 				?>
 				<script type='text/javascript'>
 					$(document).ready(function(){
-						<?php if(is_front_page()): ?>
+
 						var geoloc = "<?php echo (trim($options['arre_geoloc_arre_coordonates']) != '')? $options['arre_geoloc_arre_coordonates']: '50.696437,3.1741172'; ?>";
 						var addrr = "<?php echo (trim($options['arre_address_arre_coordonates']) != '')? $options['arre_address_arre_coordonates']: '14 rue Saint Antoine 59100 Roubaix, France'; ?>";
+						
 						//http://gmap3.net/
 						$('.map')
 						.gmap3({
@@ -136,14 +146,15 @@
 							icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
 							};
 						});
-						<?php endif; ?>
 					});
 				</script>
 				<?php
 				
+				
 			}
 
 			add_action('wp_footer', 'mycustom_script', 29);
+			endif;//end is_front_page
 		}
 
 		add_action('wp_enqueue_scripts', 'wpt_register_js');

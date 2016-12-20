@@ -5,6 +5,8 @@
 ?>
 <?php get_header(); ?>
     <main>
+        
+
         <?php if(have_posts()): ?>
             <?php while(have_posts()): the_post(); ?>
                 <header class="header-page">
@@ -67,9 +69,15 @@
                                                 $slugs = array();
                                                 foreach ($terms as $term) : 
                                                 ?>
-                                                    <a href="<?php echo $term->slug; ?>"><?php echo $term->name; ?></a>
+                                                    <a href="<?php echo $term->slug; ?>"><?php echo $term->name; ?> </a>
                                                 <?php endforeach; ?>
+                                                
                                             <?php endif; ?>
+                                            
+                                            <?php 
+                                                $category = get_the_category( $post->ID );
+                                                var_dump($category);
+                                                ?>
                                     </article>
                                     <nav>
                                         <?php

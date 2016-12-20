@@ -460,6 +460,60 @@ function hhs_remove_user_dashboard_widgets() {
 add_action('wp_user_dashboard_setup', 'hhs_remove_user_dashboard_widgets');
 
 /*
+ * Remove Page meta box
+ */
+function my_remove_meta_box_page() {
+    // Custom Fields
+    remove_meta_box('postcustom', 'page', 'normal');
+    // Discussion
+    remove_meta_box('commentsdiv' , 'page', 'normal');
+    // Comments
+    remove_meta_box('commentstatusdiv', 'page', 'normal');
+    // Revisions
+    remove_meta_box('revisionsdiv', 'page', 'normal');
+    // Author
+    remove_meta_box('authordiv', 'page', 'normal');
+    // Page Attributes
+    //remove_meta_box( pageparentdiv ,'page', 'normal');
+    // Publish
+    //remove_meta_box( submitdiv ,'page', 'normal');  
+    remove_meta_box('slugdiv', 'page', 'normal'); // Slug Metabox
+}
+
+add_action('admin_menu', 'my_remove_meta_box_page');
+
+/*
+ * Remove Post meta box
+ */
+function my_remove_meta_box_post() {
+    remove_meta_box('slugdiv', 'post', 'normal');
+    remove_meta_box('sqpt-meta-tags', 'post', 'normal');
+    // Custom Fields
+    remove_meta_box('postcustom', 'post', 'normal');
+    // Excerpt
+    //remove_meta_box('postexcerpt' , 'post' , 'normal' );
+    // Trackbacks
+    remove_meta_box('trackbacksdiv', 'post', 'normal');
+    // Discussion
+    remove_meta_box('commentstatusdiv', 'post', 'normal');
+    remove_meta_box('commentsdiv', 'post', 'normal');
+    // Revisions
+    //remove_meta_box('revisionsdiv' , 'post' , 'normal' );
+    // Author
+    remove_meta_box('authordiv', 'post', 'normal');
+    // Categories
+    //remove_meta_box('categorydiv' , 'post' , 'normal' );
+    // Tags
+    remove_meta_box('tagsdiv-post_tag', 'post', 'normal');
+    // Publish
+    //remove_meta_box('submitdiv', 'post', 'normal' ); 
+    remove_meta_box('content-permissions-meta-box', 'page', 'advanced' ); 
+      
+}
+
+add_action('admin_menu', 'my_remove_meta_box_post');
+
+/*
  * Remove  WordPress Welcome Panel
  */
 remove_action('welcome_panel', 'wp_welcome_panel');

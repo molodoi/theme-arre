@@ -9,7 +9,7 @@
             <?php while(have_posts()): the_post(); ?>
                 <header class="header-page">
                     <h2>
-                        <?php the_title(); ?>
+                        <?php the_title(); ?> 
                     </h2>
                     <p><?php the_excerpt(); ?></p>
                     <?php if (function_exists('yoast_breadcrumb')): ?>
@@ -37,16 +37,9 @@
                                             </figure>
                                         <?php endif; ?>                                    
                                             
-                                        <div class="label format">
                                         
                                         <?php the_content('Lire la suite'); ?>
-                                        <?php  
-                                                $format = get_post_format() ? : 'standard';  
-                                                /* aside, chat, gallery, link, image, quote, status, video, audio */                                      
-                                                get_template_part( 'partials/format', $format );                                        
-                                        ?>
-                                        </div>
-                                        <?php if(has_category( '', $post->ID )): ?>
+                                            <?php if(has_category( '', $post->ID )): ?>
                                             <div class=" label categories"> 
                                                 <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
                                                 <?php the_category(' '); ?>                  
@@ -57,8 +50,7 @@
                                             <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>                          
                                             <?php the_tags('Mots clés : ', ' ', ''); ?>                 
                                         </div>
-                                        <?php endif; ?>
-                                        
+                                        <?php endif; ?> 
                                     </article>
                                     <nav>
                                         <?php
@@ -96,5 +88,7 @@
                     </div>   
                 </div> 
                 <?php endif; ?>
+
+                
     </main>
 <?php get_footer(); ?>

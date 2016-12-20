@@ -57,4 +57,16 @@
         'settings' => 'arre_custom_settings[arre_email_arre_coordonates]',
         'type' => 'text'
     ));
+    /*****************/
+    $wp_customize->add_setting('arre_custom_settings[arre_google_apikey_coordonates]', array(
+        'default' => 'AIzaSyBcVcz5OZ6eNBi5d7CFYHIdtsEI5BQlm68',
+        'type' => 'option'
+    ));
+
+    $wp_customize->add_control('arre_custom_settings[arre_google_apikey_coordonates]', array(
+        'label' => 'Votre clé api google maps (Obtenir une clé sur https://developers.google.com/maps/documentation/javascript/)',
+        'section' => 'arre_coordonates',
+        'settings' => 'arre_custom_settings[arre_google_apikey_coordonates]',
+        'type' => 'text'
+    ));
 ?>

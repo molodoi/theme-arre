@@ -82,7 +82,7 @@
                         </div>
                     <?php endwhile; ?>
                     <?php else: ?>
-                            <article class="panel">
+                            <article>
                                 <h2>Pas d'article trouvé!</h2>
                                 
                                 <br />

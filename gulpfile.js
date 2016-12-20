@@ -1,4 +1,7 @@
+//Le fichier gulpfile.js s'occupe de gérer les tâches à réaliser, leurs options, leurs sources et destination. C'est le chef d'orchestre (après nous).
+// Requis
 var gulp = require('gulp'),
+    // Include des différents plugins du package.json
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     rename = require('gulp-rename'),
@@ -10,21 +13,29 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     size = require('gulp-filesize');
 
-// Paths
+// Variables de chemin
 var bower = './bower_components';
 
+// Initialisation de livereload
 var livereloadPage = function() {
     livereload({ start: true });
     livereload.reload();
 };
 
-// css task
+//Une tâche Gulp ressemble à ça :
 gulp.task('styles', function() {
+    //chemin indiquant l'endroit où se trouve le(s) fichier(s) source à traiter
     return gulp.src('./assets/sass/**/*.scss')
+        /* ici les plugins Gulp à exécuter */
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer('last 2 version'))
+        //renommer le tout en un fichier
         .pipe(rename('app.css'))
+        //Celui-ci se charge d'ajouter les préfixes uniquement lorsque nécessaire et avec une redoutable efficacité. 
+        .pipe(autoprefixer())
+        //minifier le css
         //.pipe(minifycss())
+        //chemin vers lequel les fichiers seront créés après l'exécution des tâches Gulp
         .pipe(gulp.dest('css/'))
         .pipe(size())
         .pipe(livereload({ start: true }))
@@ -33,7 +44,7 @@ gulp.task('styles', function() {
         });
 });
 
-// javascript task
+// Tâche Javascript
 gulp.task('scripts', function() {
     return gulp.src([
             bower + '/jquery/dist/jquery.js',
@@ -65,11 +76,16 @@ gulp.task('serve', function() {
 });
 
 
-// default task
+// Tâche par défaut
 gulp.task('default', function() {
     gulp.start('serve', 'scripts', 'styles');
 });
 
+//Une tâche essentielle et qui va grandement vous faciliter la vie : la tâche de surveillance automatique ("watch").
+/*
+Cette fonction de survellance est directement intégrée à Gulp (pas besoin de plugin) et permettra de détecter toute modification de contenu d'un fichier 
+et de lancer automatiquement une tâche prévue, sans avoir besoin de systématiquement lancer à la main un gulp ou un gulp styles ou un gulp scripts
+*/
 gulp.task('watch', function() {
     livereload.listen();
     gulp.watch('./**/*.php').on('change', function(file) {

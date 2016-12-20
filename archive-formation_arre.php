@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <header class="header-page">
     <h2>
-        Formations
+        <?php post_type_archive_title(); ?>
     </h2>
     <?php if (function_exists('yoast_breadcrumb')): ?>
             <?php yoast_breadcrumb('<ul class="breadcrumb"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <li>', '</li></ul>'); ?>
@@ -33,19 +33,24 @@
                                     </h2>                                    
                                 </header>
                                 <div class="label format">
-                                   <?php  
-                                        $format = get_post_format() ? : 'standard';  
-                                        /* aside, chat, gallery, link, image, quote, status, video, audio */                                      
-                                        get_template_part( 'partials/format', $format );                                        
-                                   ?>
-                                </div>
+                                            <?php  
+                                                    $format = get_post_format() ? : 'standard';  
+                                                    /* aside, chat, gallery, link, image, quote, status, video, audio */                                      
+                                                    get_template_part( 'partials/format', $format );                                        
+                                            ?>
+                                            </div>
 
-                                <?php if(has_category( '', $post->ID )): ?>
-                                    <div class=" label categories"> 
-                                        <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
-                                        <?php the_category(' '); ?>                  
-                                    </div>
-                                <?php endif; ?>
+                                            <div class="secondary label date">
+                                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
+                                                <?php the_time(get_option('date_format')); ?>
+                                            </div>
+
+                                            <?php if(has_category( '', $post->ID )): ?>
+                                                <div class=" label categories"> 
+                                                    <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
+                                                    <?php the_category(' '); ?>                  
+                                                </div>
+                                            <?php endif; ?>
                                 
                                 <?php 
                                 if(!empty($post->post_excerpt)) :
@@ -63,7 +68,7 @@
                         </div>
                     <?php endwhile; ?>
                     <?php else: ?>
-                            <article class="panel">
+                            <article>
                                 <h2>Pas d'article trouvé!</h2>
                                 
                                 <br />

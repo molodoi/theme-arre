@@ -1,10 +1,11 @@
 /* fichier app.scss */
 
-@import 'variables';
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables';
+@import 'variables';
 @import '../../bower_components/jasny-bootstrap/scss/jasny-bootstrap.scss';
 @import '../../bower_components/font-awesome-sass/assets/stylesheets/_font-awesome';
+$font-size-base: 16px !default;
 $label-color: #2d2e2e !default;
 $navbar-border-radius:0px!important;
 body {
@@ -61,7 +62,7 @@ a:hover {
     width: 100%;
 }
 
-.ekko-lightbox-container img{
+.ekko-lightbox-container img {
     display: block;
     max-width: 100%;
     height: auto;
@@ -127,7 +128,6 @@ main {
     width: auto;
 }
 
-
 .alignnone {
     margin: 5px 20px 20px 0;
 }
@@ -139,7 +139,7 @@ div.aligncenter {
 }
 
 .alignright {
-    float:right;
+    float: right;
     margin: 5px 0 20px 20px;
 }
 
@@ -383,6 +383,7 @@ article.article-index {
     border-top: 5px solid #f5f5f5;
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.03);
     padding: 5px;
+    margin-bottom: 15px;
 }
 
 article.article-index h2,
@@ -865,10 +866,7 @@ ul.gallery li {
         -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.11);
         box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.11);
     }
-    
-    
 }
-
 
 
 /* Medium Devices, Desktops */
@@ -892,7 +890,6 @@ ul.gallery li {
         display: block;
         /* force showing the toggle */
     }
-    
     /*
     .dropdown-submenu:hover>.dropdown-menu {
         display: block;
@@ -1045,12 +1042,11 @@ ul.gallery li {
 
 /* ----------- iPad mini ----------- */
 
+
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-.navmenu-fixed-left,
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+    .navmenu-fixed-left,
     .navbar-offcanvas.navmenu-fixed-left {
         left: -300px;
     }
@@ -1066,14 +1062,12 @@ ul.gallery li {
         /* force showing the toggle */
     }
 }
+
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-.navmenu-fixed-left,
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+    .navmenu-fixed-left,
     .navbar-offcanvas.navmenu-fixed-left {
         left: -300px;
     }
@@ -1090,13 +1084,11 @@ ul.gallery li {
     }
 }
 
+
 /* Landscape */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-.navmenu-fixed-left,
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+    .navmenu-fixed-left,
     .navbar-offcanvas.navmenu-fixed-left {
         left: -300px;
     }
@@ -1112,14 +1104,15 @@ ul.gallery li {
         /* force showing the toggle */
     }
 }
+
 
 /* ----------- iPad 1 and 2 ----------- */
+
+
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-.navmenu-fixed-left,
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+    .navmenu-fixed-left,
     .navbar-offcanvas.navmenu-fixed-left {
         left: -300px;
     }
@@ -1135,14 +1128,12 @@ ul.gallery li {
         /* force showing the toggle */
     }
 }
+
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-.navmenu-fixed-left,
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+    .navmenu-fixed-left,
     .navbar-offcanvas.navmenu-fixed-left {
         left: -300px;
     }
@@ -1159,13 +1150,11 @@ ul.gallery li {
     }
 }
 
+
 /* Landscape */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-.navmenu-fixed-left,
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+    .navmenu-fixed-left,
     .navbar-offcanvas.navmenu-fixed-left {
         left: -300px;
     }
@@ -1181,14 +1170,15 @@ ul.gallery li {
         /* force showing the toggle */
     }
 }
+
 
 /* ----------- iPad 3 and 4 ----------- */
+
+
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-.navmenu-fixed-left,
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    .navmenu-fixed-left,
     .navbar-offcanvas.navmenu-fixed-left {
         left: -300px;
     }
@@ -1204,14 +1194,12 @@ ul.gallery li {
         /* force showing the toggle */
     }
 }
+
 
 /* Portrait */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-.navmenu-fixed-left,
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    .navmenu-fixed-left,
     .navbar-offcanvas.navmenu-fixed-left {
         left: -300px;
     }
@@ -1228,13 +1216,11 @@ ul.gallery li {
     }
 }
 
+
 /* Landscape */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-.navmenu-fixed-left,
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    .navmenu-fixed-left,
     .navbar-offcanvas.navmenu-fixed-left {
         left: -300px;
     }
@@ -1267,6 +1253,4 @@ ul.gallery li {
         display: block;
         /* force showing the toggle */
     }
-    
-    
 }
