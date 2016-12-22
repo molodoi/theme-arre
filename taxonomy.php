@@ -17,7 +17,7 @@
 </header>
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-12">
             <main>                
                 <?php if(have_posts()): ?>
                     <div class="row">
@@ -99,11 +99,7 @@
                     </div>
                 <?php endif; ?>
             </div>
-        </div><!-- /.blog-main -->
-
-        <aside class="col-lg-3">
-            <?php get_sidebar(); ?>
-        </aside>       
+        </div><!-- /.blog-main -->       
 
       </div><!-- /.row -->
     </div><!-- /.container -->

@@ -1,4 +1,8 @@
 <?php
+/**
+ * Detection des plugins actifs. Permet d'accéder à la méthod is_plugin_active.
+ */
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $options = get_option('arre_custom_settings');
 /*
  * Masquer la top bar admin sur le front
@@ -149,7 +153,7 @@ function tc_handle_upload_prefilter($file) {
         return $file;
 
     $img = getimagesize($file['tmp_name']);
-    $minimum = array('width' => '1600', 'height' => '1600');
+    $minimum = array('width' => '2000', 'height' => '2000');
     $width = $img[0];
     $height = $img[1];
 
@@ -748,17 +752,7 @@ function my_theme_remove_generator() {
 
 add_filter('the_generator', 'my_theme_remove_generator');
 
-/*
- * Remove Version Query Strings From JavaScript JS and CSS Stylesheet Files
- */
 
-function _remove_script_version($src) {
-    $parts = explode('?', $src);
-    return $parts[0];
-}
-
-add_filter('script_loader_src', '_remove_script_version', 15, 1);
-add_filter('style_loader_src', '_remove_script_version', 15, 1);
 
 
 /*

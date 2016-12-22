@@ -5,8 +5,6 @@
 ?>
 <?php get_header(); ?>
     <main>
-        
-
         <?php if(have_posts()): ?>
             <?php while(have_posts()): the_post(); ?>
                 <header class="header-page">
@@ -61,23 +59,21 @@
                                             </div>
                                         <?php endif; ?>
                                         <?php
-                                            $terms = get_the_terms($post->ID, 'servicestype');
-                                            if ($terms && !is_wp_error($terms)) : ?>
-                                                <div class=" label categories"> <span class="glyphicon glyphicon-tag" aria-hidden="true"></span> 
-                                            <?php
-                                                $names = array();
-                                                $slugs = array();
-                                                foreach ($terms as $term) : 
-                                                ?>
-                                                    <a href="<?php echo $term->slug; ?>"><?php echo $term->name; ?> </a>
-                                                <?php endforeach; ?>
-                                                
-                                            <?php endif; ?>
-                                            
-                                            <?php 
-                                                $category = get_the_category( $post->ID );
-                                                var_dump($category);
-                                                ?>
+                                        $terms = get_the_terms($post->ID, 'servicestype');
+                                        if ($terms && !is_wp_error($terms)) : ?>
+                                            <div class=" label categories"> <span class="glyphicon glyphicon-tag" aria-hidden="true"></span> 
+                                        <?php
+                                            foreach ($terms as $term) : 
+                                            $term_link = get_term_link( $term );
+
+                                            // If there was an error, continue to the next term.
+                                            if ( is_wp_error( $term_link ) ) {
+                                                continue;
+                                            }
+                                            ?>
+                                                <a href="<?php echo esc_url($term_link); ?>"><?php echo $term->name; ?> </a>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?> 
                                     </article>
                                     <nav>
                                         <?php

@@ -57,6 +57,25 @@ Template Name: Page des services
                                                     <?php the_category(' '); ?>                  
                                                 </div>
                                             <?php endif; ?>
+                                            <?php
+                                                $terms = get_the_terms($post->ID, 'servicestype');
+                                            ?>
+                                            <?php if ($terms && !is_wp_error($terms)) : ?>
+                                            <div class=" label categories"> 
+                                                <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
+                                                <?php
+                                                foreach ($terms as $term) : 
+                                                $term_link = get_term_link( $term );
+
+                                                // If there was an error, continue to the next term.
+                                                if ( is_wp_error( $term_link ) ) {
+                                                    continue;
+                                                }
+                                                ?>
+                                                    <a href="<?php echo esc_url($term_link); ?>"><?php echo $term->name; ?> </a>
+                                                <?php endforeach; ?>               
+                                            </div>
+                                            <?php endif; ?>
                                             
                                             <?php 
                                                 the_content('Lire la suite');

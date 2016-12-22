@@ -58,11 +58,24 @@ Template Name: Page des formations
                                                 <?php the_time(get_option('date_format')); ?>
                                             </div>
 
-                                            <?php if(has_category( '', $post->ID )): ?>
-                                                <div class=" label categories"> 
-                                                    <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
-                                                    <?php the_category(' '); ?>                  
-                                                </div>
+                                            <?php
+                                                $terms = get_the_terms($post->ID, 'formationstype');
+                                            ?>
+                                            <?php if ($terms && !is_wp_error($terms)) : ?>
+                                            <div class=" label categories"> 
+                                                <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
+                                                <?php
+                                                foreach ($terms as $term) : 
+                                                $term_link = get_term_link( $term );
+
+                                                // If there was an error, continue to the next term.
+                                                if ( is_wp_error( $term_link ) ) {
+                                                    continue;
+                                                }
+                                                ?>
+                                                    <a href="<?php echo esc_url($term_link); ?>"><?php echo $term->name; ?> </a>
+                                                <?php endforeach; ?>               
+                                            </div>
                                             <?php endif; ?>
                                             
                                             <?php 

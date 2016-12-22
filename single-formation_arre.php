@@ -39,15 +39,40 @@
                                             
                                         
                                         <?php the_content('Lire la suite'); ?>
-                                            <ul class="nav nav-pills text-right">
-                                                <?php 
-                                                    $terms = get_terms('formationstype');
+                                        <div class="label format">
+                                        <?php  
+                                                $format = get_post_format() ? : 'standard';  
+                                                /* aside, chat, gallery, link, image, quote, status, video, audio */                                      
+                                                get_template_part( 'partials/format', $format );                                        
+                                        ?>
+                                        </div>
+                                        <div class="label date">
+                                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
+                                            <?php the_time(get_option('date_format')); ?>
+                                        </div>
 
-                                                    foreach ( $terms as $term ) {
-                                                        echo '<li role="presentation"><a href="'.$term->slug.'">'.$term->name.'</a></li>';
-                                                    }
-                                                ?>
-                                            </ul>  
+                                        <?php if(has_category( '', $post->ID )): ?>
+                                            <div class=" label categories"> 
+                                                <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>                          
+                                                <?php the_category(' '); ?>                  
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php
+                                        $terms = get_the_terms($post->ID, 'formationstype');
+                                        if ($terms && !is_wp_error($terms)) : ?>
+                                            <div class=" label categories"> <span class="glyphicon glyphicon-tag" aria-hidden="true"></span> 
+                                        <?php
+                                            foreach ($terms as $term) : 
+                                            $term_link = get_term_link( $term );
+
+                                            // If there was an error, continue to the next term.
+                                            if ( is_wp_error( $term_link ) ) {
+                                                continue;
+                                            }
+                                            ?>
+                                                <a href="<?php echo esc_url($term_link); ?>"><?php echo $term->name; ?> </a>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>  
                                     </article>
                                     <nav>
                                         <?php

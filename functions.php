@@ -97,23 +97,16 @@
 	if(!is_admin()):
 		// Register script
 		function wpt_register_js() {
-			/*
-			wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer);
-			$handle is the name for the script.
-			$src defines where the script is located.
-			$deps is an array that can handle any script that your new script depends on, such as jQuery.
-			$ver lets you list a version number.
-			$in_footer is a boolean parameter (true/false) that allows you to place your scripts in the footer of your HTML document rather then in the header, so that it does not delay the loading of the DOM tree.
-
-			*/
+			
 			wp_deregister_script( 'jquery' );  			 
 			//wp_enqueue_script('jquery', JQUERY_DIR, null, '3.1.1', true);
 
 			wp_enqueue_script('app-js', JS_DIR.'/app.js', null, '3.1.1', true);
-			if(is_front_page()):
-			$google_api_key = (trim($options['arre_google_apikey_coordonates']) != '')? $options['arre_google_apikey_coordonates']: 'AIzaSyBcVcz5OZ6eNBi5d7CFYHIdtsEI5BQlm68';
-			//var_dump($google_api_key);
+			if(is_front_page())://start is_front_page
+			$google_api_key = (trim($options['arre_google_apikey_coordonates']) != '')? $options['arre_google_apikey_coordonates']: 'AIzaSyBU7fH65o_IFtIuBbLB-AsVF7iaA9YgX-U';
+
 			wp_enqueue_script('gmaps', 'https://maps.googleapis.com/maps/api/js?key='.$google_api_key.'&libraries=places', null, '3.1.1', true);
+
 			wp_enqueue_script('jquery-gmaps', JS_DIR.'/gmap3.min.js', null, '3.1.1', true);
 
 			function mycustom_script() {
@@ -125,7 +118,7 @@
 						var geoloc = "<?php echo (trim($options['arre_geoloc_arre_coordonates']) != '')? $options['arre_geoloc_arre_coordonates']: '50.696437,3.1741172'; ?>";
 						var addrr = "<?php echo (trim($options['arre_address_arre_coordonates']) != '')? $options['arre_address_arre_coordonates']: '14 rue Saint Antoine 59100 Roubaix, France'; ?>";
 						
-						//http://gmap3.net/
+						<?php //http://gmap3.net/ ?>
 						$('.map')
 						.gmap3({
 							center: [geoloc],
@@ -148,8 +141,7 @@
 						});
 					});
 				</script>
-				<?php
-				
+				<?php		
 				
 			}
 
