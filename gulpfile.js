@@ -1,16 +1,28 @@
-//Le fichier gulpfile.js s'occupe de gérer les tâches à réaliser, leurs options, leurs sources et destination. C'est le chef d'orchestre (après nous).
+// Le fichier gulpfile.js s'occupe de gérer les tâches à réaliser, leurs options, leurs sources et destination. C'est le chef d'orchestre (après nous).
 // Requis
+// gulp l'automatiseur de tâches
+// Include des différents plugins du package.json
 var gulp = require('gulp'),
-    // Include des différents plugins du package.json
+    // gulp-sass : compile les fichiers Sass (.scss)
     sass = require('gulp-sass'),
+    //gulp-autoprefixer : préfixe les CSS
     autoprefixer = require('gulp-autoprefixer'),
+    //gulp-rename : renomme les fichiers
     rename = require('gulp-rename'),
+    //gulp-minify-css : minifie les feuilles de styles (.css)
+    //Pour les fichiers JavaScript :
     minifycss = require('gulp-minify-css'),
+    //gulp-concat : concatène les fichiers
     concat = require('gulp-concat'),
+    //gulp-uglify : minifie les fichiers javascript (.js)
     uglify = require('gulp-uglify'),
+    //Pour tous :
     gutil = require('gulp-util'),
+    //gulp-connect-php : Pour le serveur PHP et les fichiers php
     connect = require('gulp-connect-php'),
+    //gulp-livereload : recharger automatiquement le navigateur lorsqu'un fichier est modifié.
     livereload = require('gulp-livereload'),
+    //gulp-filesize : affiche la taille des fichiers minifiés
     size = require('gulp-filesize');
 
 // Variables de chemin
@@ -50,9 +62,6 @@ gulp.task('scripts', function() {
             bower + '/jquery/dist/jquery.js',
             bower + '/bootstrap-sass/assets/javascripts/bootstrap.js',
             bower + '/jasny-bootstrap/dist/js/jasny-bootstrap.min.js',
-            //bower + '/swiper/dist/js/swiper.min.js',
-            //bower + '/swiper/dist/js/swiper.jquery.min.js',
-            //bower + '/ekko-lightbox/dist/ekko-lightbox.min.js',
             bower + '/ekko-lightbox/ekko-lightbox.js',
             './assets/js/**/*.js'
         ])
@@ -96,9 +105,6 @@ gulp.task('watch', function() {
         bower + '/jquery/dist/jquery.js',
         bower + '/bootstrap-sass/assets/javascripts/bootstrap.js',
         bower + '/jasny-bootstrap/dist/js/jasny-bootstrap.min.js',
-        //bower + '/swiper/dist/js/swiper.min.js',
-        //bower + '/swiper/dist/js/swiper.jquery.min.js',
-        //bower + '/ekko-lightbox/dist/ekko-lightbox.min.js',
         bower + '/ekko-lightbox/ekko-lightbox.js',
         './assets/js/**/*.js'
     ], ['scripts']);
